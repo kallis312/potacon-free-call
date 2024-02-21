@@ -1015,11 +1015,9 @@ app.get('/call-history-all/:contacts_owner', function (req, res) {
 
 
 app.post('/addUser', function (req, res) {
-
-
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //  console.log("check it .."+JSON.stringify(req.body));
+    console.log("check it .." + JSON.stringify(req.body));
     let post = {
         name: req.body["name"],
         mobile_number: req.body["mobile_number"],
