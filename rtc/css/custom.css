@@ -1,0 +1,494 @@
+body {
+    background-color: #f9f9f9
+}
+
+.main-section {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-header h6{
+
+    margin: 1.5rem 0 1.4rem 0;
+}
+
+.row-padding{
+    margin-bottom:15px;
+}
+
+
+
+.login-form {
+    width: 100%;
+    padding: 10px 0px 20px 0px;
+}
+
+.lg_out{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.btn-large {
+    height: 60px;
+    line-height: 60px;
+    width: 90px;
+    font-size: 38px;
+    padding: 0px;
+    background: #00B050;
+}
+.btn-large {
+    display: inline-grid;
+    align-items: center;
+    height: 78px;
+    line-height: 52px;
+    font-size: 50px;
+    padding: 0px;
+    border-radius: 6px;
+    background-image: linear-gradient(#38743a, #3A813B, #307031);
+    /*background: #347735;*/
+    /*width: 60px;*/
+    width: 82%;
+}
+
+.action_btn{
+    margin-left: 16px;
+}
+
+.callBtns{
+
+    margin-top: 15px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    min-width: 100%;
+    background: #20B386;
+    font-size: 32px;
+}
+
+.action_btn a:first-child{
+    margin-left: 40px;
+    margin-right: 10px;
+    padding-right: 50px;
+}
+
+.action_btn a:last-child{
+
+}
+
+.audio_play{
+    width: 100%;
+    margin: 15px auto;
+    background-color: gray;
+}
+
+
+
+
+.login-form-text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem
+}
+
+.profile-image-login {
+    width: 100px;
+    height: 100px !important
+}
+
+.login-text {
+    margin-top: -6px;
+    margin-left: -6px !important
+}
+
+.margin_bottom{
+    margin-bottom: 0px;
+}
+
+.modal-header h6 {
+    margin: 1.5rem 0 1.4rem 0;
+    }
+
+
+    .btn-box{
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+    .modal-box{
+        padding: 8px;
+        border: 8px solid teal;
+    }
+
+    .csbtn{
+        font-size: 20px;
+        height: 70px;
+        width: 220px;
+        background-color: #007e12;
+    }
+
+
+
+select {
+    background-color: transparent;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    height: 3rem;
+    border-bottom: 1px solid #9e9e9e
+}
+
+
+.okbtn a{
+
+      padding: 0px 60px;
+  }
+
+
+
+
+@media only screen and (min-width: 601px) {
+    .container {
+        width: 98%
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 98%
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    #main {
+        padding-left: 0
+    }
+    footer {
+        padding-left: 0
+    }
+}
+
+@media only screen and (max-width: 992px){
+
+    nav .brand-logo{
+        left: 35%;
+        font-size:24px;
+    }
+
+    .call-page{
+
+        padding: 8px;
+    }
+
+    #loginPage{
+        margin-top: 15px !important;
+
+    }
+
+
+
+}
+
+.clear {
+    clear: both
+}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2) {
+
+
+.okbtn a{
+
+      padding: 0px 30px !important;
+  }
+
+}
+
+/* Portrait */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+     .loginPage{
+        margin-top: 20px !important;
+        padding: 15px;
+    }
+
+    nav .brand-logo{
+        font-size:18px;
+    }
+
+    .callBtns{
+
+
+    }
+
+    #hangUpBtn{
+
+    }
+
+    .nav-wrapper a{
+        font-size:18px;
+    }
+
+    .okbtn a{
+
+      padding: 0px 30px !important;
+  }
+
+}
+
+/* Landscape */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+
+
+.okbtn a{
+
+      padding: 0px 30px !important;
+  }
+
+}
+
+/* Portrait */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+
+    .loginPage{
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .callBtns{
+
+
+    }
+
+    #hangUpBtn{
+
+    }
+
+    .nav-wrapper a{
+        font-size:18px;
+    }
+
+
+    .okbtn a{
+
+      padding: 0px 30px !important;
+  }
+
+
+}
+
+/* Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+
+}
+
+/* Portrait */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4)
+  and (orientation: portrait) {
+
+
+    .callBtns{
+
+
+    }
+
+    #hangUpBtn{
+
+    }
+
+    .nav-wrapper a{
+        font-size:18px;
+    }
+
+   .okbtn a{
+
+      padding: 0px 30px;
+  }
+
+
+}
+
+/* Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4)
+  and (orientation: landscape) {
+
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #26a69a;
+  font-size: 20px;
+  border: 1px solid #146860;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.swal-button:focus {
+    box-shadow: none;
+}
+
+.swal-text {
+  font-size: 28px;
+}
+
+/* Portrait */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (orientation: portrait){
+
+    .goto-btn{
+
+      padding: 0px 30px !important;
+    }
+
+    /*-------- css for mobile ---------*/
+
+
+      .content-wrap-outbox{
+
+          width: 78% !important;
+          left: 10%!important;
+      }
+
+      .content-wrap{
+
+      }
+
+
+
+
+
+  }
+
+
+
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+
+
+
+.content-wrap-outbox{
+
+          width: 76% !important;
+          left: 10%!important;
+      }
+
+
+
+}
+.make-call-to-phone{
+    color: #FFFFFF;
+}
+
+
+.radio-container {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+/* Hide the browser's default radio button */
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}

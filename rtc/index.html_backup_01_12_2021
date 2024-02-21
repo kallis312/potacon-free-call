@@ -1,0 +1,495 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>ジャコス無料通話</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="manifest" href="manifest.json" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="css/custom.css?v=9">
+    <link rel="stylesheet" type="text/css" href="css/custom/landing-page.css?v=9">
+    <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+</head>
+<style>
+    @font-face {
+        font-family: 'hkgyokk';
+        src: url('fonts/hkgyokk.ttf') format('truetype')
+    }
+
+    body {
+        /*font-family: 'hkgyokk';*/
+        background: #eee;
+    }
+
+    .custom-font {
+        font-family: 'hkgyokk';
+    }
+    .tooltiptext {
+        visibility: hidden;
+        font-family: auto;
+        background: black;
+        border-radius: 5px;
+        position: absolute;
+        top: 60px;
+        color: white;
+        padding: 3px 6px;z-index: 999;
+    }
+
+</style>
+
+<body>
+<div>
+    <select style="display: none;" id="audioOutput"></select>
+</div>
+<!--  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper ">
+        <a id="logo-container" class="brand-logo">ジャコス無料通話</a>
+        <ul class="right">
+            <li><a onclick="goToLast()" class="waves-effect waves-light btn">戻る</a></li>
+        </ul>
+    </div>
+</nav> -->
+<div id="callPage" class="call-page" style="padding: 0;min-height: 100vh;">
+    <div class="row" style="margin: 0">
+        <div class="col s12 m4 l4 "></div>
+        <div class="col s12 m4 l4  z-depth-1 card-panel" style="background: #A09291;margin: 0;height: 100%;">
+            <form class="login-form">
+                <div class="row col s12">
+                    <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                    <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                    <audio style="display:none" id="music" src="baby.mp3"></audio>
+                    <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+                </div>
+                <!--  <div class="row margin_bottom">
+                    <div class="input-field col s11">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        <input id="callToUsernameInput" type="number">
+                        <label for="username" class="center-align">電話番号</label>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col s8 m8 l8">
+                        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                        <div id="MyDate" class="date"></div>
+
+                    </div>
+
+                    <div class="col s4 m4 l4 right">
+                        <!--                        <a class="waves-effect waves-light back-btn">戻る</a>-->
+                    </div>
+
+                </div>
+                <div class="row custom-font" style="margin-bottom: 10px;position:relative;">
+                    <div class="tooltiptext"></div>
+                    <div class="col s12 m12 l12 center " style="margin-bottom: 30px">
+                        <a onclick="pageView('view/contact_selection.html?user_mobile_number=','0')" class=" waves-effect waves-light btn-large"
+                           style="width: 80%">無料通話</a>
+                        <!-- view/contact.html?user_mobile_number= -->
+                    </div>
+                    <div class="col s3 m3 l3 center tooltip" style="margin-bottom: 10px;padding: 0 3px" >
+                        <a onclick="pageView('view/contact-load.html?type=per&user_mobile_number=')" data-id="1st" class=" waves-effect waves-light btn-large tooltip"
+                           style="width: 80%;">個
+                        </a> <!--id="get-contact-list"-->
+
+                    </div>
+                    <div class="col s3 m3 l3 center" style="margin-bottom: 10px;padding: 0 3px">
+                        <a onclick="pageView('view/contact-load.html?type=com&user_mobile_number=')" class=" waves-effect waves-light btn-large" data-id="2nd" style=" width: 80%;">会</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="margin-bottom: 10px;padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large"  data-id="3rd" style="width: 80%;">発</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="margin-bottom: 10px;padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large"  data-id="4th" style="width: 80%;">歴</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large" data-id="5th" style="width: 80%;">新</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large" data-id="6th" style=" width: 80%;">検</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large" data-id="7th" style="width: 80%;">設</a>
+                    </div>
+                    <div class="col s3 m3 l3 center" style="padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large" data-id="8th" style="width: 80%;">電</a>
+                    </div>
+
+
+                </div>
+
+                <div class="row ">
+                    <div class="col s12 m12 l12 center " style="margin: 15px 0">
+                        <p class=" waves-effect waves-light custom-middle">
+                            名ボダん一秒以上押し続けるとナビ（？？）表示します
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px">
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 5px;padding: 0px 3px;">
+                        <a class=" waves-effect waves-light btn-large" data-id="9th"
+                           style="width: 100%;font-size: 20px;background: #80B4C2">留守</a>
+                    </div>
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 5px;padding: 0px 3px;">
+                        <a class=" waves-effect waves-light btn-large" data-id="10th"
+                           style="width: 100%;font-size: 20px;background: #80B4C2">不在</a>
+                    </div>
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 5px;padding: 0px 3px;">
+                        <a class=" waves-effect waves-light btn-large" data-id="11th"
+                           style="width: 100%;font-size: 20px;background: #80B4C2">00</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 10px">
+
+                    </div>
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 10px;padding: 0 3px">
+                        <img onclick="" src="view/rsc/applist_btn.png" alt=""
+                             style="cursor: pointer;width: 100%; height: 60px;">
+                        <!--                        <a  class=" waves-effect waves-light btn-large" style="width: 100%;font-size: 20px;background: #43260C">アプリ一覧</a>-->
+                    </div>
+                    <!--                    onclick="getContacts()"-->
+                    <div class="col s4 m4 l4 center" style="margin-bottom: 10px;padding: 0 3px">
+                        <a class=" waves-effect waves-light btn-large" data-id="13th"
+                           style="width: 100%;font-size: 16px;background: #3A4AA6;line-height: normal;padding: 8px 20px;">待ち受け画面</a>
+                    </div>
+                </div>
+
+                <!-- display: none; -->
+                <div id="divForAllValues_" class="row row-padding">
+<!--                    <div id="statusDiv"  class="col s4 l4 content-wrap-outbox" style="display: none;  position: fixed; top:25%; left: 36%; z-index: 1000; width: 25%">-->
+<!--                        <div class="content-wrap" style="background-color: #FFFFFF; text-align: center; padding: 0px 0px 10px 10px; font-size: 32px; border-radius: 8px;">-->
+<!--                            <p style="color: #00B050" id="statusText"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div id="statusDiv"  class="col s4 l4 content-wrap-outbox" style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                        <div class="content-wrap row" style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                            <div class="col s12 m12 l12" style="padding-top: 25px">
+                                <img src="./view/rsc/call_pic.jpg" alt="" style="height: 100px">
+                            </div>
+                            <div class="col s12 m12 l12" id="statusText">
+                            </div>
+                            <div class="col s12 m12 l12" id="callDuration"></div>
+
+                            <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                        </div>
+                        <div class="content-wrap row" style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                            <div class="col s12 l12 m12" style="padding-bottom: 15px;">
+                                <a id="" class=" waves-effect waves-light btn-large"
+                                   style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー OFF</a>
+                            </div>
+                            <div class="col s12 l12 m12" style="padding: 0">
+                                <a id="hangUpBtn" class=" waves-effect waves-light btn-large"
+                                   style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="col s4"></div>
+    </div>
+</div>
+<div class="col s12 m3">
+    <div id="modal111" class="modal">
+        <div class="content-box">
+            <p id="usernotOnline"></p> <a onclick="sendMail()" class="waves-effect waves-light btn custom_btn">かける</a>
+            <a onclick="closeModalForOnline()" class="waves-effect waves-light btn custom_btn2">けないか</a></div>
+    </div>
+</div>
+<div class="col s4 m2 l2">
+    <div id="modalMakeCall" class="modal">
+        <div class="modal-content" style=" margin:0">
+            <div class="modal-header">
+                <h4 style="font-size: 32px" id="modalMakeCallHead"></h4></div>
+            <a onclick="requestCall()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px"
+               class="waves-effect waves-light btn">発信</a> <a onclick="closeModelMakeCall()"
+                                                              style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px"
+                                                              class="waves-effect waves-light btn">戻る</a></div>
+    </div>
+</div>
+<div class="col s4 m2 l2">
+    <div id="modalOfflineUser" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 style="font-size: 32px" id="offlineModalHead"></h4></div>
+            <a onclick="sendMail()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px"
+               class="waves-effect waves-light btn">発信</a> <a onclick="closeModalOfflineUser()"
+                                                              style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px"
+                                                              class="waves-effect waves-light btn">戻る</a></div>
+    </div>
+</div>
+<div class="col s4 m2 l2">
+    <div id="modalReceiveCall" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6>発信ボタンを押して下さい。</h6></div>
+            <a onclick="answerCall()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a> <a
+                onclick="closeModalRcvCall()" style="background-color: #EA6B75;"
+                class="waves-effect waves-light btn">戻る</a></div>
+    </div>
+</div>
+
+<div class="col s4 m2 l4">
+    <div id="settingsModal" class="modal">
+        <div class="modal-box">
+            <div class="col s4 m2 l2 btn-box"><a onclick="vibSetting()"
+                                                 style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                 class="waves-effect waves-light btn">マナーモード</a></div>
+            <div class="col s4 m2 l2 btn-box"><a onclick="showRingToneSettingAlert()" id="ringtoneSetting"
+                                                 style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                 class="waves-effect waves-light btn ">着信音</a></div>
+            <div class="col s4 m2 l2 btn-box"><a onclick="switchSpeakers()" id="spekerbtn"
+                                                 style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                 class="waves-effect waves-light btn ">スピーカーOFF</a></div>
+            <div class="col s4 m2 l2 btn-box"><a class="waves-effect waves-light btn " onclick="settingModal(22)">戻る</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="col s4 m2 l2">
+    <div id="modalUserUserNotFound" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 id="modalUserUserNotFoundHead"></h6>
+            </div>
+            <a onclick="callThisUser()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a>
+            <a onclick="closeUserNotFound()" style="background-color: #EA6B75; margin-left: 18px" class="waves-effect waves-light btn">戻る</a>
+        </div>
+    </div>
+</div> -->
+<div class="col s4 m2 l4">
+    <div id="noInternet" class="modal">
+        <div class="modal-box">
+            <div class="col s4 m2 l2 btn-box">
+                <h5 id="reConnectTextChange">接続確認中です。<br>しばらくお待ち下さい。</h5></div>
+        </div>
+    </div>
+</div>
+<div class="col s4 m2 l4">
+    <div id="index-" class="modal">
+        <div class="modal-box">
+            <div class="col s4 m2 l2 btn-box">
+                <h5>接続確認中です。</h5></div>
+        </div>
+    </div>
+</div>
+<div class="col s4 m4 l6">
+    <div id="mymodal33" class="modal">
+        <div style="background-color:#B7DDF2; height: 100%; overflow: hidden; padding: 20px; " class="modal-box2">
+            <div class="col s4 m2 s6 ">
+                <h6>ユーザー追加</h6>
+                <h6>追加するユーザー名を入れて下さい</h6></div>
+            <div class="row">
+                <div class="col s12 l12 ">
+                    <form action=""> お名前:
+                        <input id="userNameToAdd" style="background-color: #fff;" type="text" name="firstname"
+                               placeholder="山田さん"></form>
+                </div>
+                <div class="col s12 l12 ">
+                    <form action=""> 電話番号
+                        <input id="userNumberToAdd" style="background-color: #fff;" type="text" name="lastname"
+                               placeholder="０９０－９９９９－９９９９"></form>
+                </div>
+                <div class="row">
+                    <div class="col s5"><a onclick="closeModalForAddUser()"
+                                           style="background-color: #EA6B75; padding:0; width:100px"
+                                           class="waves-effect waves-light btn">戻る</a></div>
+                    <div style="margin-left: 20px" class="col s5"><a onclick="ownNumberRegistration()"
+                                                                     style="background-color: #107FC9; padding:0 ; width:100px"
+                                                                     class="waves-effect waves-light btn">完了</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col s4 m4 l4">
+    <div id="phoneNumber" class="modal">
+        <div style="background-color:#B7DDF2; height: 100%; overflow: hidden; padding: 20px; " class="modal-box2">
+            <div class="col s4 m2 s6 ">
+                <h6>続行するには電話を入力してください。</h6></div>
+            <div class="row">
+                <div class="col s12 l12 ">
+                    <form action=""> 電話番号
+                        <input id="mobilenumber" style="background-color: #fff;" type="text" name="lastname"
+                               placeholder="０９０－９９９９－９９９９"></form>
+                </div>
+                <div class="row">
+                    <div class="col s5"><a onclick="$('#phoneNumber').modal('close');"
+                                           style="background-color: #EA6B75; padding:0; width:100px"
+                                           class="waves-effect waves-light btn">戻る</a></div>
+                    <div style="margin-left: 20px" class="col s5"><a onclick="openContactList()"
+                                                                     style="background-color: #107FC9; padding:0 ; width:100px"
+                                                                     class="waves-effect waves-light btn">完了</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col s4 m4 l4">
+    <div id="contact-lists" class="modal" style="">
+        <div style=" height: 100%; overflow: hidden" class="modal-box2">
+            <div class="col m12 s12 " style="background: #918283;display: flex; min-height: 37px; padding-right: 35px;">
+                <h6 style="margin: 0">0000000。</h6>
+
+                <a onclick="$('#contact-lists').modal('close');"
+                   style="background-color: #eeeeee; padding:0;color: black;position: absolute;right: 0"
+                   class="waves-effect waves-light btn">戻る</a>
+
+            </div>
+        </div>
+        <div class="row" id="contact-list-view">
+            <!--                <div class="col s12 l12 " style="border-bottom: 1px solid #c5c3c3;padding-left: 30px">-->
+            <!--                    <div>Oni</div>-->
+            <!--                    <div>131212</div>-->
+            <!--                </div>-->
+
+        </div>
+    </div>
+</div>
+
+<script src="client11.js?v=797979797979797955&v1=00000000000055"></script>
+<script src="js/app/landing-page.js?v=999999254175845865"></script>
+<script>
+    // $('#index-').modal();
+    // $('#index-').modal('open');
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('sw.js')
+            .then(function (registration) {
+                console.log('Registration successful, scope is:', registration.scope);
+                registration.update();
+                console.log('Registration Update')
+
+            })
+            .catch(function (error) {
+                console.log('Service worker registration failed, error:', error);
+            });
+        caches.keys().then(function(cacheNames) {
+            cacheNames.forEach(function(cacheName) {
+                console.log(cacheName)
+                caches.delete(cacheName);
+                location.reload(true);
+            });
+        });
+    }
+
+    // listen for long-press events
+    document.addEventListener('long-press', function(e) {
+        // e.target.setAttribute('data-editing', 'true');
+        let data_id = e.target.getAttribute('data-id');
+
+        if (data_id == '1st') {
+            $('.tooltiptext').css({left : '0px',top : '60px'})
+            $('.tooltiptext').text('個人•個人用の電話')
+        } else if (data_id == '2nd'){
+            $('.tooltiptext').text('会社会社用の電話帳')
+            $('.tooltiptext').css({left : '70px',top : '60px'})
+        } else if (data_id == '3rd'){
+            $('.tooltiptext').text('発信*電話をかける')
+            $('.tooltiptext').css({left : '160px',top : '60px'})
+        } else if (data_id == '4th'){
+            $('.tooltiptext').text('雇歴・受発信の履歴')
+            $('.tooltiptext').css({left : '225px',top : '60px'})
+        } else if (data_id == '5th'){
+            $('.tooltiptext').text('新規・新規登録ができます')
+            $('.tooltiptext').css({left : '0px',top : '130px'})
+        } else if (data_id == '6th'){
+            $('.tooltiptext').text('検索・電話帳の検索')
+            $('.tooltiptext').css({left : '70px',top : '130px'})
+        } else if (data_id == '7th'){
+            $('.tooltiptext').text('設定・各種の設定')
+            $('.tooltiptext').css({left : '160px',top : '130px'})
+        } else if (data_id == '8th'){
+            $('.tooltiptext').text('充電・充電残量の確認')
+            $('.tooltiptext').css({left : '225px',top : '130px'})
+        } else if (data_id == '9th'){
+            $('.tooltiptext').text('ポイスメール：留守番電話の確認')
+            $('.tooltiptext').css({left : '0px',top : '340px'})
+        } else if (data_id == '10th'){
+            $('.tooltiptext').text('アプセンス：不在着信電話の確認')
+            $('.tooltiptext').css({left : '140px',top : '340px'})
+        } else if (data_id == '11th'){
+            $('.tooltiptext').text('メール：メール受信の確認')
+            $('.tooltiptext').css({left : '225px',top : '340px'})
+        } else if (data_id == '12th'){
+            $('.tooltiptext').text('メール：メール受信の確認')
+            $('.tooltiptext').css({left : '225px',top : '390px'})
+        } else if (data_id == '13th'){
+            $('.tooltiptext').text('呼きな料や料数を付ち長けにできます。')
+            $('.tooltiptext').css({left : '215px',top : '390px'})
+        }
+
+        $('.tooltiptext').css({visibility : 'visible'})
+        setTimeout(function () {
+            $('.tooltiptext').css({visibility : 'hidden'})
+        },2000)
+    });
+
+    ownNumberRegistrationCheck()
+
+    function ownNumberRegistrationModal() {
+        $('#mymodal33').modal();
+        $('#mymodal33').modal('open');
+    }
+
+    function ownNumberRegistrationModalClose() {
+        $('#mymodal33').modal('close');
+    }
+
+    function ownNumberRegistrationCheck() {
+        if (!localStorage.getItem("myNumber")) {
+            ownNumberRegistrationModal()
+        } else {
+            let myN = JSON.parse(localStorage.getItem("myNumber"))
+            let myID = urlParam('user_mobile_number');
+            if (!myID){
+                location.href = '?user_mobile_number='+myN.number
+            }
+        }
+    }
+
+    function ownNumberRegistration() {
+        var name = document.getElementById("userNameToAdd").value;
+        var number = document.getElementById("userNumberToAdd").value;
+        if (name === "" || number === "") {
+            swal("お名前と電話番号を\n入力してください。");
+        } else {
+            let myContact = {
+                name : name,
+                number : number
+            }
+            localStorage.setItem("myNumber",JSON.stringify(myContact))
+            location.href = '?user_mobile_number='+number
+        }
+    }
+
+
+    /*!
+     * long-press.js
+     * Pure JavaScript long-press event
+     * https://github.com/john-doherty/long-press
+     * @author John Doherty <www.johndoherty.info>
+     * @license MIT
+     */
+    !function(t,e){"use strict";function n(){this.dispatchEvent(new CustomEvent("long-press",{bubbles:!0,cancelable:!0})),clearTimeout(o),console&&console.log&&console.log("long-press fired on "+this.outerHTML)}var o=null,u="ontouchstart"in t||navigator.MaxTouchPoints>0||navigator.msMaxTouchPoints>0,s=u?"touchstart":"mousedown",i=u?"touchcancel":"mouseout",a=u?"touchend":"mouseup",c=u?"touchmove":"mousemove";"initCustomEvent"in e.createEvent("CustomEvent")&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var o=e.createEvent("CustomEvent");return o.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),o},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener(s,function(t){var e=t.target,u=parseInt(e.getAttribute("data-long-press-delay")||"1500",10);o=setTimeout(n.bind(e),u)}),e.addEventListener(a,function(t){clearTimeout(o)}),e.addEventListener(i,function(t){clearTimeout(o)}),e.addEventListener(c,function(t){clearTimeout(o)})}(this,document);
+</script>
+</body>
+
+</html>

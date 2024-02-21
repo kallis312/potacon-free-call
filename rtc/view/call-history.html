@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ジャコス無料通話</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 990px) and (min-width: 575px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 320px) and (min-width: 200px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+
+        .border-deep-red {
+            border: 3px solid #933c3e;
+        }
+
+        .br-9 {
+            border-radius: 9px;
+        }
+
+        .image-div {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-div img {
+            width: 80%;
+        }
+
+        .image-div .centered {
+            position: absolute;
+            top: 55%;
+            left: 47%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+        }
+
+        .image-div .one, .image-div .four, .image-div .seven, .image-div .star {
+            left: 50% !important;
+        }
+
+        .image-div .star {
+            top: 60%;
+            font-size: 38px !important;
+            left: 52% !important;
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto col-sm p-0 bg-potacon min-vh-100"
+             >
+             <!-- style="background-image: linear-gradient(to right, #897679, #ad9f9f,#897679);" -->
+             <!-- #918283 -->
+             <div class="header"
+                 style="position: relative;display: flex;padding: 10px;">
+                <!-- <img class="header-img" src="./rsc/contacts_title_img.png" alt="" height="65"> -->
+                <img onclick="javascript:history.back()" src="./rsc/go_back_btn.png" alt=""
+                     style="position: absolute;right: 3px;top : 4px;cursor: pointer" height="50">
+            </div>
+
+            <ol class="list-group h-100" id="history-data" style="margin-top: 32px;">
+            </ol>
+        </div>
+        
+    </div>
+
+    <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+        <form class="login-form" style="padding: 0">
+            <div class="row col s12" style="margin: 0">
+                <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                <audio id="music" src="./../baby.mp3"></audio>
+                <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+            </div>
+            <!--  <div class="row margin_bottom">
+                <div class="input-field col s11">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="callToUsernameInput" type="number">
+                    <label for="username" class="center-align">電話番号</label>
+                </div>
+            </div>-->
+            <div class="row row-padding">
+                <div class="login-button center-align">
+                    <div class="col s4"></div>
+                </div>
+            </div>
+
+            <!-- display: none; -->
+            <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+                     style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-top: 25px">
+                            <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="statusText"></div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="callDuration"></div>
+                        <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                    </div>
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+                            <a role="button" id=""
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                                OFF</a>
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+                            <a role="button" id="hangUpBtn"
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+            </div>
+
+
+        </form>
+
+    </div>
+    <div>
+        <select style="display: none;" id="audioOutput"></select>
+    </div>
+    <!-- <div class="col s12 m3">
+        <div id="modaldelete" class="modal">
+            <div class="content-box" style="margin-top: 20px">
+             <h1>hello</h1>
+            </div>
+        </div>
+    </div> -->
+    <center>
+    <div id="modaldelete" class="modal">
+        <div class="modal-box modalcss">
+            <div class="swal-section">
+                <div class="col s4 m2 s6 ">
+                    <h6>発着信履歴を削除する</h6>
+                </div>
+                <!-- <form id="contactUpdateForm"> -->
+                    <div class="modal-content" style="padding: 2px !important;"></div>
+                    <div class="row">
+                        <div class="col s6 right-align"><a onclick="closedeletemodal()"
+                                               style="background-color: #a40916;  width:160px; width:160px;color:white;font-weight: 700;font-size: 20px;"
+                                               class="waves-effect waves-light btn"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+                                              </svg> 戻る</a></div>
+                        <div class="col s6">
+                            <button type="submit" style="background-color: #054d7d;  width:160px;color:white;font-weight: 700;font-size: 20px;"
+                            class="waves-effect waves-light btn" onclick="deleteCallHistory()"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                              </svg> 消す</button>
+
+                              <span id="id"></span>
+                        </div>
+                    </div>
+                <!-- </form> -->
+
+            </div>
+        </div>
+    </div></center>
+</main>
+<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script>
+    /**
+     * @param date
+     * @returns {string|string}
+     */
+    function dateToTimeAgo(date) {
+        const now                        = new Date(Date.now());
+        const difftime                   = now.getTime() - date.getTime();
+        const diffDate                   = new Date(difftime - 5.5 * 60 * 60 * 1000);
+        const [sec, min, hr, day, month] = [
+            diffDate.getSeconds(),
+            diffDate.getMinutes(),
+            diffDate.getHours(),
+            diffDate.getDate() - 1,
+            diffDate.getMonth(),
+        ];
+        const f                          = (property, end) => {
+            // console.log(property,end)
+            return `${property} ${end}${property > 1 ? "" : ""} 前に`;
+        }
+        // console.log(diffDate.toLocaleString());
+        return month >= 1
+               ? f(month, "月")
+               : day >= 1
+                 ? f(day, "日")
+                 : hr >= 1
+                   ? f(hr, "時間")
+                   : min >= 1
+                     ? f(min, "分")
+                     : day >= 1
+                       ? f(sec, "秒")
+                       : "";
+
+
+        throw new Error("Date To time ago not implmented");
+    }
+
+    function convertHMS(value) {
+        const sec   = parseInt(value, 10); // convert value to number if it's string
+        let hours   = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+        let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
+        // add 0 if value < 10; Example: 2 => 02
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return hours + ':' + minutes + ':' + seconds; // Return is HH : MM : SS
+    }
+
+    // fetch call history data from db
+    fetchCallHistory()
+
+    function fetchCallHistory() {
+        $.ajax({
+            type       : "GET",
+            url        : `${apiUrl}/call-history/${localStorage.getItem("auth_id")}`,
+            dataType   : 'text',
+            contentType: "application/x-www-form-urlencoded",
+            success    : function (res) {
+                let data = JSON.parse(res)
+                showingContactsListHtml(data.histories)
+            },
+            error      : function (errordata) {
+                console.log(errordata, 'errordata');
+            }
+        });
+    }
+
+    function deleteCallHistory() {
+        const id = $("#id").val();
+        // alert(id);
+        // return;
+        $.ajax({
+            type       : "GET",
+            url        : `${apiUrl}/delete-call-history/${id}`,
+            dataType   : 'text',
+            contentType: "application/x-www-form-urlencoded",
+            success    : function (res) {
+                // let data = JSON.parse(res)
+                closedeletemodal()
+                swal("削除されました", {
+                    button: "近い",
+                    icon  : "success",
+                });
+                // window.location.reload();
+                fetchCallHistory()
+            },
+            error      : function (errordata) {
+                console.log(errordata, 'errordata');
+            }
+        });
+    }
+
+    function showingContactsListHtml(histories) {
+        if (histories.length > 0) {
+            let html = '';
+            histories.map(function (history) {
+
+                const date           = new Date(history.start_time);
+                const timeZoneOffsetMinutes = 360; // UTC+6:00
+                const localTime = new Date(date.getTime() + (timeZoneOffsetMinutes * 60 * 1000));
+
+                // let timeAgo        = dateToTimeAgo(date);
+                // const date = new Date(date);
+                const options = {
+                //   weekday: 'long',
+                //   year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                //   hour: 'numeric',
+                //   minute: 'numeric',
+                //   second: 'numeric',
+                timeZone: 'Asia/Tokyo', // Set to Japanese time zone
+                };
+                const japaneseDate = localTime.toLocaleString('ja-JP', options);
+                // console.log(localTime,history.start_time);
+                const hours12 = (localTime.getHours() + 24) % 12 || 12;
+                const minutes = localTime.getMinutes();
+                const japaneseTime = `${hours12}時${minutes}分`;
+
+                // console.log(date,timeAgo);
+                let formatted_date = moment(new Date(history.start_time)).format("YYYY-MM-DD");
+                let type;
+                switch (history.type) {
+                    case '1':
+                        type = '<span class="text-success">着信</span>';
+                        break;
+                    case '2':
+                        type = '<span class="text-primary">発信</span>';
+                        break;
+                    case '3':
+                        type = '<span class="text-danger">間違い電話</span>';
+                        break;
+                    case '4':
+                        type = '<span class="text-warning">ユーザーがビジー</span>';
+                        break;
+                }
+                console.log('history',history);
+                html += `<li class="list-group-item d-flex align-items-center" style="cursor:pointer" onclick="openModalDelete(${history.id})">
+                    <div class="ms-2 col-8" >
+                        <div class="fw-bold" style="font-size:24px;color:black;">${history.name}</div>
+                       <span style="font-size:14px;color:black;"> ${history.mobile_number} </span>
+                    </div>
+                    <div class="col-4">
+                        <span class="badge rounded-pill" style="font-size:14px;color:black;">${japaneseTime} ${japaneseDate}</span>
+                    </div>
+                </li>`
+                  // <div class="col-3">
+                    //     <span class="badge bg-primary rounded-pill float-end">
+                    //         ${history.duration == null ? '00' : convertHMS(history.duration)}
+                    //     </span>
+                    // </div>
+            })
+
+            $('#history-data').html(html);
+        } else {
+            $('#history-data').html('<div class="row mt-2"><div class="col text-white text-center"><h5>履歴が見つかりません</h5></div></div>');
+        }
+
+    }
+
+    function openModalDelete(id) {
+    $('#modaldelete').modal();
+    $('#modaldelete').modal('open');
+    $("#id").val(id);
+    // console.log('id',id);
+}
+    function closedeletemodal() {
+    // $('#modaldelete').modal();
+    $("#id").val('');
+    $('#modaldelete').modal('close');
+}
+</script>
+<style>
+    .bg-potacon{
+    background: #ceccca;
+    
+}
+.list-group-item{
+    border-radius: 10px;
+    border-color: rgb(104, 102, 102);
+    margin: 3px;
+}
+.list-group-item:hover{
+    background: rgb(177, 165, 230);
+    border-radius: 10px;
+}
+@media only screen and (max-width: 430px) {
+    .modalcss {
+    width: 80%;
+    background-color: white;
+  }
+  
+}
+@media only screen and (min-width: 430px) {
+    .modalcss {
+    width: 20%;
+    background-color: white;
+  }
+  
+}
+</style>
+</body>
+</html>

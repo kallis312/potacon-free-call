@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "jacosphone",
+  "private_key_id": "49aba22ee3f6e8590116c836b4c1f058ec1f3332",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoxAsgFGmf8Wqa\nExDjBGRB+Y2AXlavFRiZxPzXunN/6r2iKETunNbmgVXcMF+iQg86tTNgh0bMdo8Q\nqiyjS+T/hP7L8GWkgfw5+yJ9p6eXCbob8rWuqnlwvn95qROVHKM/dBbyF8+w+OdD\nbdBScEdl75I3E8q99+HvDDtSXMBMimxhrXVyMFViFM6pxTcsZ7zJUsNQVhb1OAZG\nBWG4Teyplrj1tbjTiO1tkfcNd1Udkx11kdXCqbXFPGVoaWr16rSfiaxXmTEf/V9Y\nJ3xLHD+gBRewhYgtCjqfiz1DjXAJ2ydVznmzo9Mas7+d8BYLRn8SDDbXINYQ25WU\nDRY289QFAgMBAAECggEAAOO6z2NYydCygXDt6wq8R2UQRhAvIeSLp0GHKkpcR/gK\ngG4TwGnq24sv4G+kUCTFJ7pNXTXdivXIE4jA1ipbvzSGme3pHwkn1yxmNW6qkI8q\n6JL2cHaY/x3Z8SoK9kAQ5L9jgmqXxG4DcQBqeJAj8k9RDB5GMcELWEdpTjdwkuQs\n93h+aToX6YGStGgpBE5vkKDnMWxnSVp0TT1Tf1scDpSpKv2ZVIvRxen7O6P3kvLK\nWITJlo8hC5LB37LEpaUMh30OdYiJxRq1xrlxyAr2Qq/43DJsKfTV+YF7Q1rH8YLv\nl3Z0rLnFozJHfhNoN2mTP4XZ7CopOvUr5gOLUGQGwQKBgQDa3AmRu60ZsHIDY97y\nh4AP/5NOCi//EkPe6LLRLeCMqwj9zYL/OWx1A1yax1hDrS8OjkhXiJXdSKxknd5e\n5drIBdp9xvgCd0xigaOBJyGbla716hLNnpxxco7R9MyYpWOtinNGgCDYnkl/x1c9\nA3SQR144bpMUxfb7e0uHp5gT4QKBgQDFZ8XzA6iN1vQsvQTdTzXRA4QwF9unxoRk\nH/38NjKaR9sCCAR2hnqfV84gRisKDU4ifPtKLFzhbKisTaVfQ3DREzblCP8msbJO\nA5Od/WtP1oX5Pf/KcUsasY19HgFO1rM7F92aqQenLaGIkgF0DCrW6EmolrYGq3/n\nXKovTY+EpQKBgEtLllM4ATasWJ1H98TyzyEx6WjY4mhbzVPcNOD4ap+anC5NTPsn\ns2OSc4KggIJQC7dzRfoveHe37+9xzLZTV/Cm6uOI13xptLLTLQBbCRnw5k+eZzes\nkOAK7I3ZLaZ6iA+FaWFg5WwBEQJP/3hzPuAAXa8Gg72K2gzs/zA9fXmhAoGBAJq2\nKQK7lEeN9xJ1FbHpGZF1Qw16NVG5mRrro+AeDeyycieWZwEJhmMJqufKdoLLSLho\n4X0RZb3arhtUQ051CZ8igvxf37DQxaC01uWUrp0E0T005RshTa5fBzfO41GJnTCs\nFKbY4MGaVqY1X+Q2gQCrTsdNTt3NXVHTYyHtlJRtAoGAXEcgbplANsQcAqgy1c/k\npz1m72ILdgQxddScV6I8/3QPRRniDe1VM4jpkytCpYtWt8LT1qZANysr7iF28W1L\ngBmEPIojPxlugBHFrIi86A3N8TiFo5v+HSK1sRINo7c5Wq9SsYWWGVG/Z+Pge277\nOSP+LLo7HlrpdR5W5JqD1ow=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-r9gah@jacosphone.iam.gserviceaccount.com",
+  "client_id": "104296934946988334780",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-r9gah%40jacosphone.iam.gserviceaccount.com"
+}

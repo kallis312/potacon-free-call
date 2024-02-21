@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接触荷重。</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <link rel="stylesheet" type="text/css" href="../css/custom/landing-page.css?v=9">
+    <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+
+    <style>
+        .call-option-button {
+            width: 95%;
+            height: 80px;
+            line-height: 80px;
+            margin-bottom: 20px;
+        }
+        .swal-title{
+            /*padding: 13px 5px !important;*/
+            font-weight: 400;
+        }
+
+        [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+            /*position: absolute;*/
+            opacity: 1;
+            cursor: pointer !important;
+        }
+
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+        .radio-container{
+            font-family: 'hkgyokk';
+        }
+        .go-to-call-btn{
+            width: 100%;
+            height: 56px;
+            font-size: 31px;
+            font-family: 'hkgyokk';
+            border-radius: 8px;
+        }
+
+        .two_line_text {
+            margin-bottom: 5px;
+            font-size: 13px;
+            text-align: center;
+            font-weight: bold;
+            padding: 0px 7px;
+            line-height: 22px;
+        }
+
+        /* #contact_type_personal {
+            text-align: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 9px;
+            padding: 23px;
+            height: 100px;
+            margin: 13px 17px;
+            font-size: 2.92rem;
+        } */
+        @media (min-width:270px) and (max-width:300px) {
+            .two_line_text{
+                font-size: 14px !important;
+            }
+            /* #contact_type_personal {
+                padding: 12px 0;
+                height: 44px;
+                font-size: 14px;
+                margin: 3px 7px;
+                font-weight: 600
+            } */
+        }
+        @media (max-width:320px) and (min-width:301px) {
+            .two_line_text{
+                font-size: 15px !important;
+            }
+            /* #contact_type_personal {
+                padding: 12px 0;
+                height: 44px;
+                font-size: 14px;
+                margin: 3px 7px;
+                font-weight: 600
+            } */
+        }
+        @media (min-width:321px) and (max-width:350px) {
+            .two_line_text{
+                font-size: 16px !important;
+            }
+            /* #contact_type_personal {
+                padding: 16px 0;
+                height: 48px;
+                font-size: 17px;
+                margin: 7px 7px;
+                font-weight: 600;
+            } */
+        }
+        @media (max-width:400px) and (min-width:351px) {
+            .two_line_text{
+                font-size: 17px !important;
+            }
+            /* #contact_type_personal {
+                padding: 17px 0;
+                height: 52px;
+                font-size: 18px;
+                margin: 7px 7px;
+                font-weight: 600;
+            } */
+        }
+        @media (min-width:401px) and (max-width:670px) {
+            /* #contact_type_personal {
+                padding: 32px 0;
+                height: 92px;
+                font-size: 27px;
+                margin: 14px 17px;
+                font-weight: 600;
+            } */
+        }
+        #free-call-alert-modal {
+            top: 82% !important;
+            text-align: center;
+        }
+        #free-call-alert-modal span {
+            font-size: 18px !important;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <select style="display: none;" id="audioOutput"></select>
+</div>
+<div id="callPage" class="call-page" style="padding: 0; min-height: 100vh;">
+
+    <div class="row" style="height: 100%;margin: 0">
+        <div class="col s12 m3 l4"></div>
+        <!-- background-image: linear-gradient(to right, #7c6b6e, #ad9f9f,#7c6b6e); -->
+        <div class="col s12 m7 l4  z-depth-1 card-panel"
+             style="min-height: 100vh;padding: 0;margin: 0; ">
+            <div class="row" style="margin-bottom: 5px">
+                <div class="col m12 s12 "
+                     style="position: relative;display: flex;padding: 10px;">
+                    <!-- <img src="./rsc/contacts_title_img.png" alt="" height="65"> -->
+                    <img onclick="javascript:history.back()" src="./rsc/go_back_btn.png"  alt=""
+                         style="position: absolute;right: 3px;top : 4px;cursor: pointer" height="50">
+                </div>
+            </div>
+
+
+
+            <!-- <div class="row two_line_text">
+                ①，受信相手を押して修正が出来ます。<br>
+                ②，受発信の頻度準に表示されています。
+            </div> -->
+            <div class="row hide" style="margin-bottom:5px">
+                <div class="col s6 m6 l6">
+                    <a onclick="pageView('call-history.html?user_mobile_number=','0')"  class="blue waves-effect waves-light btn-large"
+                       style="width: 100%; font-size: 16px;height: 100%;line-height: 33px;">履歴</a>
+                </div>
+                <div class="col s6 m6 l6 right">
+                    <a class=" waves-effect waves-light btn-large blue"
+                       style="width: 100%; font-size: 16px;height: 100%;line-height: 33px;">新連絡追加</a>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px" id="contact-load-button" hidden>
+                <div class="col s12 m12 l12 center" style="margin-bottom: 5px;">
+                    <a class=" waves-effect waves-light btn-large" id="get-contact-list"
+                       style="width: 100%; font-size: 16px;height: 100%;line-height: 33px;float: right;">連絡先から輸入</a>
+                </div>
+                <form class="col s12" id="contacts-search-form" >
+                    <div class="input-field col s8">
+                        <input id="contacts_search_text" type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                        <button class="btn waves-effect waves-light" type="submit">探す</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Pick a Contact -->
+            <div  class="row" style="margin-bottom: 3px;background-color:white;font-size: 20px;padding: 5px;">
+            <center><button id="pickContactButton"  class="btn btn-outline-primary" style="width: 200px;border-radius: 11px;font-size: 20px;font-weight: 700;">電話帳</button></center>
+            </div>
+
+            <!-- web bowser's cache clear clinets -->
+            <!-- <div  class="row" style="margin-bottom: 3px;background-color:white;font-size: 20px;padding: 5px;">
+            <center><button id="clear-cache-button">Clear Cache</button></center>
+            </div> -->
+
+            <div class="row" id="contact-list-view">
+<!--                <div onclick="viewCallOption(this)"  data-tel="01687855988"  data-name="Oni" class="col s12 l12 make-call-to-phone" style="position: relative;cursor: pointer ;border-bottom: 1px solid #5c5a5a;padding-top: 0px;padding-left: 20px;padding-bottom: 10px" >-->
+<!--                    <div style="font-size: 18px">Oni</div>-->
+<!--                    <div style="font-size: 18px" id="01687855988">01687855988</div>-->
+<!--                </div>-->
+                <!-- <div class="col s12 l12 make-call-to-phone"
+                     style="position: relative;cursor: pointer ;border-bottom: 1px solid #c5c3c3;padding-left: 20px">
+                    <div style="font-size: 12px;color:#ff1818">連絡先リストが空です</div>
+                </div> -->
+                <div id="historyModal" class="modal" style="max-width: 300px">
+                    <div class="modal-content center" style="padding: 0px 13px 17px">
+                        <h5>データがありません </h5>
+                        <hr style="border: 1px solid #1cb8ee">
+                        <h5>メインに戻ります</h5>
+                        <img style="cursor: pointer;" onclick="modalclose()" src="../images/4.png">
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="row" id="navi" style="margin-top: 508px" onclick="hidenavi()" style="display: block;">
+                <div class="col m12 s12 "  
+                     style="position: relative;background: #d3cdce;display: flex;padding: 10px;">
+                     <p>個人用・会社用の区分が出来ます
+               名前を押すと  <img style="cursor: pointer; width: 10%" class="w-88" role="button" src="../images/icon/2.png">
+         ボタンで区分出来ます</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+            <form class="login-form" style="padding: 0">
+                <div class="row col s12" style="margin: 0">
+                    <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay> </audio>
+                    <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay> </audio>
+                    <audio id="music" src="./../baby.mp3"></audio>
+                    <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"> </div>
+                </div>
+                <!--  <div class="row margin_bottom">
+                    <div class="input-field col s11">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        <input id="callToUsernameInput" type="number">
+                        <label for="username" class="center-align">電話番号</label>
+                    </div>
+                </div>-->
+                <div class="row row-padding">
+                    <div class="login-button center-align">
+                        <div class="col s4"></div>
+                    </div>
+                </div>
+
+                <!-- display: none; -->
+                <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                    <div id="statusDiv"  class="col s4 l4 content-wrap-outbox" style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                        <div class="content-wrap row" style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                            <div class="col s12 m12 l12" style="padding-top: 25px">
+                                <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                            </div>
+                            <div class="col s12 m12 l12" id="statusText"></div>
+                            <div class="col s12 m12 l12" id="callDuration"></div>
+<!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                        </div>
+                        <div class="content-wrap row" style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                            <div class="col s12 l12 m12" style="padding-bottom: 15px;">
+                                <a onclick="switchSpeakers()" id="spekerbtn" class=" waves-effect waves-light btn-large"
+                                   style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー OFF</a>
+                            </div>
+                            <div class="col s12 l12 m12" style="padding: 0">
+                                <a id="hangUpBtn" class=" waves-effect waves-light btn-large"
+                                   style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+    <div class="col s4"></div>
+    <div class="col s4 m4 l4">
+        <div id="call-option-" class="modal" style="">
+            <div style=" height: 100%; overflow: hidden" class="modal-box2">
+                <div class="col m12 s12 " style="display: flex; min-height: 37px; padding-bottom: 25px;">
+                    <div style="text-align: center;width: 100%;font-size: 24px;font-weight: bold;padding-top: 10px"
+                         id="contact-name"></div>
+                    <!--                    <a onclick="$('#call-option-').modal('close');"-->
+                    <!--                       style="background-color: #eeeeee; padding:0;color: black;position: absolute;right: 0"-->
+                    <!--                       class="waves-effect waves-light btn">戻る</a>-->
+                </div>
+            </div>
+
+            <div style="height: 300px">
+                <div class="row">
+                    <div class="col s6 m6 l6 center">
+                        <img onclick="makeCallFromOption()" src="./rsc/call_btn.png" alt=""
+                             style="cursor: pointer;width: 100%; height: 80px;" height="50">
+
+                    </div>
+                    <!-- showModalForAddUser() -->
+                    <div class="col s6 m6 l6 center">
+                        <img onclick="" src="./rsc/amend_btn.png" alt=""
+                             style="cursor: pointer;width: 100%; height: 80px;" height="50">
+
+                    </div>
+                    <div class="col s6 m6 l6 center">
+                        <img onclick="" src="./rsc/kaisyayouhe.png" alt=""
+                             style="cursor: pointer;width: 100%; height: 80px;" height="50">
+
+                    </div>
+                    <div class="col s6 m6 l6 center">
+                        <img onclick="$('#call-option-').modal('close')" src="./rsc/goback_btn.png" alt=""
+                             style="cursor: pointer;width: 100%; height: 80px;" height="50">
+                    </div>
+                    <div class="col s12 m12 l12 center"><a style="background: #EB245B"
+                                                           class="waves-effect waves-light call-option-button modal-trigger btn-large ">無料通話</a>
+                    </div>
+
+                    <div class="col s12 m12 l12 center">
+                        <img onclick="" src="./rsc/delete_btn.png" alt=""
+                             style="cursor: pointer;width: 50%; height: 80px;" height="50">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m3">
+        <div id="modal111" class="modal">
+            <div class="content-box">
+                <p id="usernotOnline"></p> <a onclick="sendMail()"
+                                              class="waves-effect waves-light btn custom_btn">かける</a> <a
+                    onclick="closeModalForOnline()" class="waves-effect waves-light btn custom_btn2">けないか</a></div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalMakeCall" class="modal">
+            <div class="modal-content" style=" margin:0">
+                <div class="modal-header">
+                    <h4 style="font-size: 32px" id="modalMakeCallHead"></h4></div>
+                <a onclick="requestCall()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px"
+                   class="waves-effect waves-light btn">発信</a>
+                <a onclick="closeModelMakeCall()" style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px"
+                   class="waves-effect waves-light btn">戻る</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalOfflineUser" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="font-size: 32px" id="offlineModalHead"></h4></div>
+                <a onclick="sendMail()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px"
+                   class="waves-effect waves-light btn">発信</a> <a onclick="closeModalOfflineUser()"
+                                                                  style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px"
+                                                                  class="waves-effect waves-light btn">戻る</a></div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalReceiveCall" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6>発信ボタンを押して下さい。</h6></div>
+                <a onclick="answerCall()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a>
+                <a onclick="closeModalRcvCall()" style="background-color: #EA6B75;"
+                   class="waves-effect waves-light btn">戻る</a></div>
+        </div>
+    </div>
+
+    <div class="col s4 m2 l4">
+        <div id="settingsModal" class="modal">
+            <div class="modal-box">
+                <div class="col s4 m2 l2 btn-box"><a onclick="vibSetting()"
+                                                     style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                     class="waves-effect waves-light btn">マナーモード</a></div>
+                <div class="col s4 m2 l2 btn-box"><a onclick="showRingToneSettingAlert()" id="ringtoneSetting"
+                                                     style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                     class="waves-effect waves-light btn ">着信音</a></div>
+                <div class="col s4 m2 l2 btn-box"><a onclick="switchSpeakers()" id="spekerbtn"
+                                                     style="width: 230px;background: #007e12; font-size: 30px ;padding: 0"
+                                                     class="waves-effect waves-light btn ">スピーカーOFF</a></div>
+                <div class="col s4 m2 l2 btn-box"><a class="waves-effect waves-light btn "
+                                                     onclick="settingModal(22)">戻る</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col s4 m2 l2">
+        <div id="modalUserUserNotFound" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 id="modalUserUserNotFoundHead"></h6>
+                </div>
+                <a onclick="callThisUser()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a>
+                <a onclick="closeUserNotFound()" style="background-color: #EA6B75; margin-left: 18px" class="waves-effect waves-light btn">戻る</a>
+            </div>
+        </div>
+    </div> -->
+    <div class="col s4 m2 l4">
+        <div id="noInternet" class="modal">
+            <div class="modal-box">
+                <div class="col s4 m2 l2 btn-box">
+                    <h5 id="reConnectTextChange">接続確認中です。<br>しばらくお待ち下さい。</h5></div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l6">
+        <div id="mymodal33" class="modal">
+            <div style="background-color:#B7DDF2; height: 100%; overflow: hidden; padding: 20px; " class="modal-box2">
+                <div class="col s4 m2 s6 ">
+                    <h6>ユーザー追加</h6>
+                    <h6>追加するユーザー名を入れて下さい</h6></div>
+                <div class="row">
+                    <div class="col s12 l12 ">
+                        <form action=""> お名前:
+                            <input id="userNameToAdd" style="background-color: #fff;" type="text" name="firstname"
+                                   placeholder="山田さん"></form>
+                    </div>
+                    <div class="col s12 l12 ">
+                        <form action=""> 電話番号
+                            <input id="userNumberToAdd" style="background-color: #fff;" type="text" name="lastname"
+                                   placeholder="０９０－９９９９－９９９９"></form>
+                    </div>
+                    <div class="row">
+                        <div class="col s5"><a onclick="ownNumberRegistrationModalClose()"
+                                               style="background-color: #EA6B75; padding:0; width:100px"
+                                               class="waves-effect waves-light btn">戻る</a></div>
+                        <div style="margin-left: 20px" class="col s5"><a onclick="ownNumberRegistration()"
+                                                                         style="background-color: #107FC9; padding:0 ; width:100px"
+                                                                         class="waves-effect waves-light btn">完了</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l6">
+        <div id="contactManageModal" class="modal" style="width: 97%">
+            <div style="background-color:#cdcdcd; height: 100%; overflow: hidden; padding: 10px; " class="modal-box2">
+                <div class="col s4 m2 s6 ">
+                    <h6>連絡先タイプの更新</h6>
+                </div>
+                <form id="contactManageForm">
+                    <div class="modal-content" style="padding: 0 !important;"></div>
+                    <div class="row">
+                        <div class="col s6 right-align"><a onclick="contactManageModalClose()"
+                                               style="background-color: #EA6B75; padding:0; width:100px"
+                                               class="waves-effect waves-light btn">戻る</a></div>
+                        <div class="col s6"><button type="submit"
+                                                                              style="background-color: #107FC9; padding:0 ; width:100px"
+                                                                              class="waves-effect waves-light btn">完了</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div id="contactUpdateModal" class="modal" style="width: 97%">
+            <div style="background-color:#cdcdcd; height: 100%; overflow: hidden; padding: 10px; " class="modal-box2">
+                <div class="col s4 m2 s6 ">
+                    <h6>連絡先タイプの更新</h6>
+                </div>
+                <form id="contactUpdateForm">
+                    <div class="modal-content" style="padding: 0 !important;"></div>
+                    <div class="row">
+                        <div class="col s6 right-align"><a onclick="contactUpdateModalClose()"
+                                               style="background-color: #EA6B75; padding:0; width:100px"
+                                               class="waves-effect waves-light btn">戻る</a></div>
+                        <div class="col s6"><button type="submit"
+                                                                              style="background-color: #107FC9; padding:0 ; width:100px"
+                                                                              class="waves-effect waves-light btn">完了</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="free-call-alert-modal" class="modal">
+    <div class="modal-box">
+        <div class="swal-section">
+            <span id="contact_change_msg"></span>
+        </div>
+    </div>
+</div>
+<div class="col s12 m3">
+    <div id="selected_contact_modal" class="modal">
+        <div class="content-box" style="margin-top: 20px">
+            <h5 id="selected_contact_name" style="text-align:center;font-weight: bold;"></h3>
+            <div class="row">
+                <div class="col s6 m6 l6">
+                    <img onclick="goToMobileCall()" style="width: 100%;cursor: pointer;" class="w-100" role="button" src="../images/icon/1.png">
+                </div>
+                <div class="col s6 m6 l6">
+                    <img onclick="goToContactEdit()" style="cursor: pointer; width: 100%" class="w-100" role="button" src="../images/icon/2.png">
+                </div>
+                <div class="col s6 m6 l6">
+                    <!-- <h3 id="contact_type_personal" onclick="contactTypeChange()">個人用へ</h3> -->
+                    <img id="contact_type_personal" onclick="contactTypeChange()" style="cursor: pointer; width: 100%;" class="w-100" role="button" src="../images/icon/8.png">
+                    <img id="contact_type_company" onclick="contactTypeChange()" style="cursor: pointer; width: 100%;" class="w-100" role="button" src="../images/icon/3.png">
+                </div>
+                <div class="col s6 m6 l6">
+                    <img onclick="selected_contact_modal_close()" style="cursor: pointer; width: 100%" class="w-100" role="button" src="../images/icon/4.png">
+                </div>
+            </div>
+            <div class="row" id="free_call_btn">
+                <div class="col s8 m8 l6 offset-s2 offset-m2 offset-l3">
+                    <div onclick="viewCallOption(this)" class="w-100" role="button" 
+                    style="background-color: #050115;color:white;cursor: pointer; width: 100%;padding: 20px;
+                    border-radius: 20px;text-align: center;font-size: 30px;font-weight: 700;
+                    box-shadow: 4px 3px 3px 4px #d0cfcf;">
+                    無料通話
+                </div>
+                    <!-- <img onclick="viewCallOption(this)" style="cursor: pointer; width: 100%" class="w-100" role="button" src="../images/icon/5.png"> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 m6 l6 offset-s3 offset-m3 offset-l3">
+                    <img onclick="contactDelete()" style="width: 100%; cursor: pointer;" class="w-100" role="button" src="../images/icon/6.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div id="notification-modal" class="modal" style="max-width: 300px">
+    <div class="modal-content center" style="padding: 0px 13px 17px">
+       
+    </div>
+</div> -->
+
+
+<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>
+<script src="../js/contact.js?v=797979797979797922&v1=00000000000022"></script>
+<script>
+      $(document).ready(function() {
+        const supported = "contacts" in navigator;
+                // console.log('asdsad');
+                // contactsnumberSave('asd','asdasdqweqwewe',1,localStorage.getItem("auth_id"));
+            $("#historyModal").show();
+            $("#notification-modal").show();
+          
+        });
+        function modalclose(){
+            $("#historyModal").hide();
+            location.href='/rtc'
+        }
+        function hidenavi(){
+            document.getElementById('navi').style.display='none'
+        }
+</script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const pickContactButton = document.getElementById('pickContactButton');
+      const selectedContactDiv = document.getElementById('selectedContact');
+      pickContactButton.addEventListener('click', async () => {
+        try {
+
+            // console.log("auth id:",localStorage.getItem("auth_id"));
+
+          const contacts = await navigator.contacts.select(["name","tel"],{multiple: true});
+          console.log("Selected contact:", contacts);
+        //   if (contact ) {
+        //             // const phoneNumber = contact.phoneNumbers[0].value;
+        //             selectedContactDiv.textContent = `Selected Phone Number: ${contact[0].tel}`;
+        //         } 
+        if (contacts.length > 0) {
+                let contactInfo = "";
+          contacts.forEach(contact => {
+            if (contact.tel) {
+                contactsnumberSave(contact.name,contact.tel,1);
+                const phoneNumber = contact.tel;
+                contactInfo +=  `<div style="position: relative;cursor: pointer ;border-bottom: 1px solid #5c5a5a;padding-top: 0px;padding-left: 20px;padding-bottom: 0px;width:100%">`;
+                // contactInfo +=  `<hr>`;
+                contactInfo += `${contact.name}<br>`;
+                contactInfo += `${phoneNumber}<br><br>`;
+                // contactInfo +=  `<hr>`;
+                contactInfo +=  `</div>`;
+
+            //   contactsnumberSave(contact.name,phoneNumber,1,localStorage.getItem("auth_id"));
+            }
+          });
+          selectedContactDiv.innerHTML  = contactInfo;
+                }
+                else {
+                    selectedContactDiv.textContent = "No phone number selected.";
+                }
+          // You can now use the selected contact information
+        } catch (error) {
+          console.error("Error picking contact:", error);
+        }
+      });
+    });
+
+    function contactsnumberSave(contact_name,contact_telnum,contact_group_flag) {
+        $.ajax({
+            type       : "POST",
+            url        : `${apiUrl}/contact-add/${localStorage.getItem("auth_id")}`,
+            dataType   : 'text',
+            contentType: "application/x-www-form-urlencoded",
+            data       : {
+                contact_name: contact_name,
+                contact_telnum: contact_telnum,
+                contact_group_flag: contact_group_flag,
+            },
+            success    : function (res) {
+                swal("更新しました", {
+                    button: "近い",
+                    icon  : "success",
+                });
+            },
+            error      : function (errordata) {
+                console.log(errordata, 'errordata');
+            }
+        });
+    }
+  </script>
+
+  <!-- cache clear function -->
+  <!-- <script>
+    function clearBrowserCache() {
+      const timestamp = new Date().getTime();
+      const currentUrl = window.location.href;
+      const cacheClearedUrl = `${currentUrl}?t=${timestamp}`;
+
+      window.location.href = cacheClearedUrl;
+    }
+
+    document.getElementById("clear-cache-button").addEventListener("click", clearBrowserCache);
+  </script> -->
+<style>
+    #free_call_btn{
+        display: block !important;
+    }
+
+    /* Style for the contact row */
+.contact-row {
+    background-color: rgb(240, 239, 245);
+    /* margin-bottom: 10px; */
+    padding: 20px;
+    border-bottom: 1px solid #5c5a5a;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 2px 2px;
+}
+
+.contact-row:hover {
+    background-color: #f2a9a9; /* Change background color on hover for visual feedback */
+}
+
+/* Style for the contact name */
+.contact-name {
+    font-size: 22px;
+    color: #29033f; /* Darken the text color for better readability */
+    font-weight: 700;
+}
+
+/* Style for the contact number */
+.contact-number {
+    font-size: 18px; /* Slightly reduce the font size for the number */
+    color: #230101; /* Use a lighter text color for the number */
+    font-weight: 700;
+}
+
+/* Modal styles (customize as needed) */
+#myModal {
+    display: none;
+    /* Add modal styles here */
+}
+</style>
+</body>
+</html>

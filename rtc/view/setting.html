@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ジャコス無料通話</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 990px) and (min-width: 575px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 320px) and (min-width: 200px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+
+        .btn-default {
+            background-color: #d5d9d8;;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <select style="display: none;" id="audioOutput"></select>
+</div>
+<main class="container ">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto col-sm p-0 bg-potacon min-vh-100"
+             style="background-image: linear-gradient(to right, #897679, #ad9f9f,#897679);">
+            <div class="header"
+                 style="position: relative;display: flex;padding: 10px;">
+                <!-- <img class="header-img" src="./rsc/contacts_title_img.png" alt="" height="65"> -->
+                <img onclick="javascript:history.back()" src="./rsc/go_back_btn.png" alt=""
+                     style="position: absolute;right: 3px;top : 4px;cursor: pointer" height="50">
+            </div>
+            <div class="py-4 mx-2">
+                <div class="row p-2">
+                    <h1 class="text-center m-0">着信 <small>音量</small></h1>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-1.png">
+                    </div>
+                    <div class="col-4 ps-1 image-div" role="button">
+                        <img class="image w-100" src="../images/s-2.jpg">
+                    </div>
+                    <div class="col-4 ps-1 image-div" role="button">
+                        <img class="image w-100" src="../images/s-3.png">
+                    </div>
+                </div>
+
+                <div class="row p-2 align-items-center">
+                    <h6 class="text-center text-white m-0">音量は「<span class="fs-5 fw-bold text-warning">中</span>」に設定しました</h6>
+                    <div class="col-6" role="button">
+                        着信音 (マナー)
+                    </div>
+                    <div class="col-6" role="button">
+                        <img class="image w-100" src="../images/s-4.png">
+                    </div>
+                </div>
+
+                <div class="row p-2 align-items-center">
+                    <h6 class="text-center text-white m-0">着信音を出します</h6>
+                    <div class="col-6" role="button">
+                        振動 (バイブ)
+                    </div>
+                    <div class="col-6" role="button">
+                        <img class="image w-100" src="../images/s-5.png">
+                    </div>
+                </div>
+
+                <div class="row p-2 align-items-center">
+                    <h6 class="text-center text-white">バイブを「入」にしました </h6>
+                    <h1 class="text-center m-0">通話 <small>音量</small></h1>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-6.png">
+                    </div>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-7.png">
+                    </div>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-8.png">
+                    </div>
+                </div>
+
+
+                <div class="row p-2 align-items-center">
+                    <h6 class="text-center text-white">音量は「<span class="fs-5 fw-bold text-warning">大</span>」に設定しました </h6>
+                    <h1 class="m-0">ボタン反応速度</h1>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-9.png">
+                    </div>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-10.png">
+                    </div>
+                    <div class="col-4" role="button">
+                        <img class="image w-100" src="../images/s-11.png">
+                    </div>
+                </div>
+                <h6 class="text-center text-white">速度は「<span class="fs-5 fw-bold text-warning">中</span>」に設定しました </h6>
+                <div class="row p-2 align-items-center">
+                    <h1 class="text-center">電源スリープ</h1>
+                    <div class="col-3 p-2"  role="button">
+                        <button style="background-color: #D500FA" class="btn btn-default fs-5 w-100">30<br>秒</button>
+                    </div>
+                    <div class="col-3 p-2" role="button">
+                        <button class="btn btn-default fs-5 w-100">1<br>分</button>
+                    </div>
+                    <div class="col-3 p-2" role="button">
+                        <button class="btn btn-default fs-5 w-100">2<br>分</button>
+                    </div>
+                    <div class="col-3 p-2" role="button">
+                        <button class="btn btn-default fs-5 w-100">3<br>分</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+        <form class="login-form" style="padding: 0">
+            <div class="row col s12" style="margin: 0">
+                <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                <audio id="music" src="./../baby.mp3"></audio>
+                <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+            </div>
+            <!--  <div class="row margin_bottom">
+                <div class="input-field col s11">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="callToUsernameInput" type="number">
+                    <label for="username" class="center-align">電話番号</label>
+                </div>
+            </div>-->
+            <div class="row row-padding">
+                <div class="login-button center-align">
+                    <div class="col s4"></div>
+                </div>
+            </div>
+
+            <!-- display: none; -->
+            <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+                     style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-top: 25px">
+                            <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="statusText"></div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="callDuration"></div>
+                        <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                    </div>
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+                            <a role="button" id=""
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                                OFF</a>
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+                            <a role="button" id="hangUpBtn"
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+            </div>
+
+
+        </form>
+    </div>
+</main>
+<!--<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>-->
+<script>
+    const input = $('#user-number');
+    $('#clear-data').on('click', function (e) {
+        e.preventDefault();
+        input.val(input.val().slice(0, -1));
+    });
+    $('.image-div').on('click', function (e) {
+        e.preventDefault();
+        var val = $(this).find('span').text();
+        input.val(input.val() + val);
+    });
+    const callingAlertModalMobile = (e) => {
+        let userNumber = $('#user-number').val();
+        if (userNumber.length == 0) {
+            alert('電話番号を入力してください');
+            return;
+        }
+        swal(`${userNumber} さんに電話しますか`, {
+            buttons            : {
+                catch91 : {
+                    text : "はい",
+                    value: "yes_call",
+                },
+                catch192: {
+                    text : "いいえ",
+                    value: "cancel_call",
+                },
+
+            },
+            allowOutsideClick  : false,
+            closeOnClickOutside: false,
+        })
+            .then((value) => {
+                switch (value) {
+                    case "yes_call":
+                        window.location.href = 'tel:' + userNumber
+                        break;
+                    case "cancel_call":
+                        swal.close();
+                        break;
+
+                }
+            });
+    }
+
+    function callingInModal(personal_contact) {
+        if (personal_contact.length > 0) {
+            let contact = personal_contact[0]
+            let name    = contact.name.length > 0 ? contact.name[0] : '';
+            let tel_    = contact.tel.length > 0 ? contact.tel[0] : '';
+            swal(`${name}さんに電話しますか`, {
+                buttons            : {
+                    catch91 : {
+                        text : "はい",
+                        value: "yes_call",
+                    },
+                    catch192: {
+                        text : "いいえ",
+                        value: "cancel_call",
+                    },
+
+                },
+                allowOutsideClick  : false,
+                closeOnClickOutside: false
+            }).then((value) => {
+                switch (value) {
+                    case "yes_call":
+                        tel           = tel_
+                        callingNumber = tel_
+                        $('#modalMakeCall').modal()
+                        var user = urlParam('user_mobile_number');
+                        if (user === tel) {
+                            swal("私の番号です。");
+                        } else {
+                            requestCall()
+                            $('#contact-name').text(name)
+                        }
+                        return false;
+                        $('#call-option-').modal()
+                        $('#call-option-').modal('open')
+                        // location.href = 'tel:'+tel;
+                        break;
+                    case "cancel_call":
+                        swal.close();
+                        break;
+                }
+            });
+        }
+    }
+
+    function viewCallOption(e) {
+        let tel_      = $('#user-number').val();
+        tel           = tel_
+        callingNumber = tel_
+        $('#modalMakeCall').modal()
+        var user = urlParam('user_mobile_number');
+
+        if (user === tel) {
+            swal("私の番号です。");
+        } else {
+            requestCall()
+            let name = tel_;
+            $('#contact-name').text(name)
+        }
+
+        return false;
+        $('#call-option-').modal()
+        $('#call-option-').modal('open')
+
+
+        // location.href = 'tel:'+tel;
+    }
+
+</script>
+</body>
+</html>

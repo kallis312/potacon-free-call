@@ -1,0 +1,26 @@
+{
+  "name": "calling_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rasel",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "circular-json": "^0.5.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "firebase-admin": "^9.3.0",
+    "jquery": "^3.3.1",
+    "mysql": "^2.15.0",
+    "mysql2": "^3.6.0",
+    "nodemailer": "^4.6.2",
+    "request": "^2.88.2",
+    "websocket": "^1.0.25",
+    "winston": "^3.3.3",
+    "ws": "^4.0.0"
+  }
+}

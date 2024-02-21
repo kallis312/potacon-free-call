@@ -1,0 +1,109 @@
+/* background: #A09291; 27-08-2023 */
+.bg-potacon{
+    background: #ceccca;
+    
+}
+.list-group-item{
+    border-radius: 10px;
+    border-color: rgb(104, 102, 102);
+    margin: 3px;
+}
+.list-group-item:hover{
+    background: rgb(177, 165, 230);
+    border-radius: 10px;
+}
+.close-btn {
+    color: #d98939;
+}
+
+/* Footer button */
+.footer-button {
+    margin-bottom: 4rem;
+}
+
+.footer-button > .btn {
+    border-radius: 1rem;
+    padding: 0px;
+    height: 64px;
+    width: 126px;
+}
+
+/*
+ * about
+ */
+.about {
+    margin-bottom: 2rem;
+}
+
+.about-title {
+    margin-bottom: .25rem;
+    font-size: 2.5rem;
+    color: #fd00ff;
+}
+
+.about-meta {
+    margin-bottom: 1.25rem;
+    color: #b5abab;
+    font-size: 24px;
+}
+
+.about-meta2 {
+    margin-bottom: 1.25rem;
+    color: #b5abab;
+    font-size: 14px;
+}
+
+.blog-footer p:last-child {
+    margin-bottom: 0;
+}
+
+.circle-parent {
+    display: table;
+    margin: 0 auto;
+}
+
+.circle {
+    margin: auto;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    background: #9f570f;
+    place-items: center;
+    font-size: 34px;
+}
+
+.circle2-parent {
+    display: table;
+    margin: 0 auto;
+}
+
+.circle2 {
+    margin: auto;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    background: #ef7d0b;
+    place-items: center;
+    font-size: 23px;
+    color: black;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-size-40 {
+    font-size: 40px
+}
+
+/*---------call-history--------------*/
+.list-group-item{
+    background: none;
+    color: white;
+}

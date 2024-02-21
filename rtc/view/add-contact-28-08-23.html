@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ジャコス無料通話</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 990px) and (min-width: 575px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 320px) and (min-width: 200px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        .bg-gradient-green, .btn-check:checked + .btn-outline-success {
+            background-image: linear-gradient(#38743a, #3A813B, #307031);
+        }
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+        .button-design{
+            height: 56px; font-size: 44px; font-family: 'hkgyokk'
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto"
+             style="position: relative;background: #918283;display: flex;padding: 10px;">
+            <img class="header-img" src="./rsc/contacts_title_img.png" alt="" height="65">
+            <img onclick="javascript:history.back()" src="./rsc/go_back_btn.png" alt=""
+                 style="position: absolute;right: 3px;top : 4px;cursor: pointer" height="50">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto bg-potacon min-vh-100 px-2">
+            <form action="" id="add-new-contact" method="post" class="mt-3">
+                <div class="form-group my-2">
+                    <label for="name" class="fs-5">連絡先を登録するために
+                        相手の名前と電話番号
+                        そして【個人用】か【会社用】かを
+                        決めてください。</label>
+                </div>
+                <div class="form-group my-3 input-group-lg">
+                    <label for="name" class="fs-5">相手氏名</label>
+                    <input required type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                           placeholder="相手氏名">
+                </div>
+                <div class="form-group my-3 input-group-lg">
+                    <label for="phone" class="fs-5">電話番号</label>
+                    <input required type="text" class="form-control" id="phone" aria-describedby="emailHelp"
+                           placeholder="電話番号">
+                </div>
+                <div class="d-flex justify-content-center my-3">
+                    <div class="d-flex justify-content-center btn-group" role="group"
+                         aria-label="Basic radio toggle button group">
+                        <input checked value="1" type="radio" class="btn-check" name="type" id="personal"
+                               autocomplete="off">
+                        <label class="button-design btn-lg fs-4 btn btn-outline-success" for="personal">個人用</label>
+
+                        <input value="2" type="radio" class="btn-check" name="type" id="company" autocomplete="off">
+                        <label class="button-design btn-lg fs-4 btn btn-outline-success" for="company">会社用</label>
+                    </div>
+                </div>
+                <div class="d-flex form-group justify-content-center my-3">
+                    <button type="submit" class="button-design btn-large waves-light p-0 btn btn-success text-center w-75 bg-gradient-green">登録</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+        <form class="login-form" style="padding: 0">
+            <div class="row col s12" style="margin: 0">
+                <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                <audio id="music" src="./../baby.mp3"></audio>
+                <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+            </div>
+            <!--  <div class="row margin_bottom">
+                <div class="input-field col s11">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="callToUsernameInput" type="number">
+                    <label for="username" class="center-align">電話番号</label>
+                </div>
+            </div>-->
+            <div class="row row-padding">
+                <div class="login-button center-align">
+                    <div class="col s4"></div>
+                </div>
+            </div>
+
+            <!-- display: none; -->
+            <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+                     style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-top: 25px">
+                            <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="statusText"></div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="callDuration"></div>
+                        <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                    </div>
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+                            <a role="button" id=""
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                                OFF</a>
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+                            <a role="button" id="hangUpBtn"
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+            </div>
+
+
+        </form>
+    </div>
+    
+    <div>
+        <select style="display: none;" id="audioOutput"></select>
+    </div>
+
+
+    <!-- <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+        <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+             style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+            <div class="content-wrap row"
+                 style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                <div class="col s12 m12 l12" style="padding-top: 25px">
+                    <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                </div>
+                <div class="col s12 m12 l12" id="statusText"></div>
+                <div class="col s12 m12 l12" id="callDuration"></div>
+               
+
+            </div>
+            <div class="content-wrap row"
+                 style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                <div class="col s12 l12 m12" style="padding-bottom: 15px;">
+                    <a id="" class=" waves-effect waves-light btn-large"
+                       style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                        OFF</a>
+                </div>
+                <div class="col s12 l12 m12" style="padding: 0">
+                    <a id="hangUpBtn" class=" waves-effect waves-light btn-large"
+                       style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden"></div> -->
+</main>
+<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>
+<script>
+    $(document).ready(function () {
+        $("#add-new-contact").on('submit', (function (e) {
+            e.preventDefault();
+            var name  = $("#name").val();
+            var phone = $("#phone").val();
+            var type  = $("input[name='type']:checked").val();
+
+            let contact = {
+                "contact_owner"     : localStorage.getItem('auth_id'),
+                "contact_name"      : name,
+                "contact_telnum"    : phone,
+                "contact_group_flag": type
+            }
+            $.ajax({
+                dataType   : 'json',
+                contentType: 'application/json',
+                processData: false,
+                type       : "POST",
+                url        : `${apiUrl}/add_contacts/${localStorage.getItem('jacosUserId')}`,
+                data       : JSON.stringify([contact]),
+                success    : function (res) {
+                    if (res.status === 'success') {
+
+                        $("#add-new-contact").trigger('reset');
+                        $("#add-new-contact").hide();
+                        $("#add-new-contact").after(`<div class="alert alert-success" role="alert">
+                          登録が完了しました。
+                       </div>`);
+                        setTimeout(function () {
+                            window.location.href = './../index.html';
+                        }, 2000);
+                    } else {
+                        $("#add-new-contact").after(`<div class="alert alert-danger" role="alert">
+                           連絡先の登録に失敗しました。
+                       </div>`);
+                    }
+                },
+                error      : function (errordata) {
+                    $("#add-new-contact").after(`<div class="alert alert-danger" role="alert">
+                           連絡先の登録に失敗しました。
+                       </div>`);
+                }
+            });
+        }));
+    });
+</script>
+</body>
+</html>

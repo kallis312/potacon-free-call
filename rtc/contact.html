@@ -1,0 +1,203 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>ジャコス無料通話</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--   <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link rel="manifest" href="manifest.json" /> -->
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css?v=9">
+    <link rel="stylesheet" type="text/css" href="css/custom/landing-page.css?v=9">
+    <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+</head>
+<style>
+    body {
+        background: #eee;
+    }
+    .default-button {
+        font-size: 25px;
+        height: 40px;
+        line-height: 40px;
+    }
+</style>
+
+<body>
+    <div>
+        <select style="display: none;" id="audioOutput"></select>
+    </div>
+    <!--  <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper ">
+            <a id="logo-container" class="brand-logo">ジャコス無料通話</a>
+            <ul class="right">
+                <li><a onclick="goToLast()" class="waves-effect waves-light btn">戻る</a></li>
+            </ul>
+        </div>
+    </nav> -->
+    <div id="callPage" class="call-page" style="padding: 0;">
+        <div class="row">
+            <div class="col s4 l4 m4"></div>
+            <div class="col s12 m4 l4  z-depth-1 card-panel" style="    height: 100%;margin: 0;background: #E6E6E6;position: relative;">
+                <form class="login-form">
+                    <div class="row col s12">
+                        <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay> </audio>
+                        <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay> </audio>
+                        <audio style="display:none" id="music" src="baby.mp3"></audio>
+                        <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"> </div>
+                    </div>
+                    <!--  <div class="row margin_bottom">
+                        <div class="input-field col s11">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input id="callToUsernameInput" type="number">
+                            <label for="username" class="center-align">電話番号</label>
+                        </div>
+                    </div>-->
+<!--                    <div class="row row-padding">-->
+<!--                        <div class="login-button center-align">-->
+<!--                            <div class="col s4"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="row">
+<!--                        <div class="col s4 m4 l4 center">-->
+<!--                            <a id="hangUpBtn" class=" waves-effect waves-light btn-large" style="height: 38px;font-size: 21px; line-height: 40px;width: 100%;">終了</a>-->
+<!--                        </div>-->
+<!--                        <div class="col s3 m3 l3 center">-->
+<!--                            <a href="view/contact-load.html?type=per" class=" waves-effect waves-light btn-large" style="height: 38px;font-size: 21px; line-height: 40px;width: 100%;">個人</a>-->
+<!--                        </div>-->
+<!--                        <div class="col s3 m3 l3 center">-->
+<!--                            <a href="view/contact-load.html?type=com"class=" waves-effect waves-light btn-large" style="height: 38px;font-size: 21px; line-height: 40px;width: 100%;">会社</a>-->
+<!--                        </div>-->
+
+                        <img onclick="javascript:history.back()" src="./view/rsc/go_back_btn.png" alt="" style="position: absolute;right: 10px;top : 10px;cursor: pointer"  height="50">
+
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+<!--                        <div class="col s4 m4 l4 center"> <a href="view/contact-load.html" class=" waves-effect waves-light btn-large default-button">電話帳</a> </div>-->
+                        <div class="col s4 m4 l4 center">
+                            <a onclick="pageView('view/contact-load.html?type=per&user_mobile_number=')" class=" waves-effect waves-light btn-large default-button">個</a> </div>
+                        <div class="col s4 m4 l4 center">
+                            <a onclick="pageView('view/contact-load.html?type=com&user_mobile_number=')" class=" waves-effect waves-light btn-large default-button">会</a> </div>
+                        <!-- showModalForAddUser() -->
+<!--                        <div class="col s4 m4 l4 center"> <a id="addButton" onclick="showModalForAddUser()" class=" waves-effect waves-light btn-large default-button">追加</a> </div>-->
+                        <div class="col s4 m4 l4 center"> <a class="waves-effect waves-light  modal-trigger btn-large default-button" onclick="settingModal(1)" href="#settingsModal">設定</a> </div>
+                    </div>
+                    
+<!--                     display: none;-->
+                    <div id="divForAllValues" class="row row-padding" style="visibility: hidden">
+                        <div id="statusDiv"  class="col s4 l4 content-wrap-outbox" style="display: none;  position: fixed; top:25%; left: 36%; z-index: 1000; width: 25%">
+                            <div class="content-wrap" style="background-color: #FFFFFF; text-align: center; padding: 0px 0px 10px 10px; font-size: 32px; border-radius: 8px;">
+                                <p style="color: #00B050" id="statusText"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </form>
+            </div>
+            <div class="col s4"></div>
+        </div>
+    </div>
+    <div class="col s12 m3">
+        <div id="modal111" class="modal">
+            <div class="content-box">
+                <p id="usernotOnline"></p> <a onclick="sendMail()" class="waves-effect waves-light btn custom_btn">かける</a> <a onclick="closeModalForOnline()" class="waves-effect waves-light btn custom_btn2">けないか</a> </div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalMakeCall" class="modal">
+            <div class="modal-content" style=" margin:0">
+                <div class="modal-header">
+                    <h4 style="font-size: 32px" id="modalMakeCallHead"></h4> </div> <a onclick="requestCall()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px" class="waves-effect waves-light btn">発信</a> <a onclick="closeModelMakeCall()" style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px" class="waves-effect waves-light btn">戻る</a> </div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalOfflineUser" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="font-size: 32px" id="offlineModalHead"></h4> </div> <a onclick="sendMail()" style="background-color: #107FC9;font-size: 40px; height: 55px;padding: 10px" class="waves-effect waves-light btn">発信</a> <a onclick="closeModalOfflineUser()" style="background-color: #EA6B75; margin-left: 20px;font-size: 40px; height: 55px;padding: 10px" class="waves-effect waves-light btn">戻る</a> </div>
+        </div>
+    </div>
+    <div class="col s4 m2 l2">
+        <div id="modalReceiveCall" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6>発信ボタンを押して下さい。</h6> </div> <a onclick="answerCall()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a> <a onclick="closeModalRcvCall()" style="background-color: #EA6B75;" class="waves-effect waves-light btn">戻る</a> </div>
+        </div>
+    </div>
+
+    <div class="col s4 m2 l4">
+        <div id="settingsModal" class="modal">
+            <div class="modal-box">
+                <div class="col s4 m2 l2 btn-box"> <a onclick="vibSetting()" style="width: 230px;background: #007e12; font-size: 30px ;padding: 0" class="waves-effect waves-light btn">マナーモード</a> </div>
+                <div class="col s4 m2 l2 btn-box"> <a onclick="showRingToneSettingAlert()" id="ringtoneSetting" style="width: 230px;background: #007e12; font-size: 30px ;padding: 0" class="waves-effect waves-light btn ">着信音</a> </div>
+                <div class="col s4 m2 l2 btn-box"> <a onclick="switchSpeakers()" id="spekerbtn" style="width: 230px;background: #007e12; font-size: 30px ;padding: 0" class="waves-effect waves-light btn ">スピーカーOFF</a> </div>
+                <div class="col s4 m2 l2 btn-box"> <a class="waves-effect waves-light btn " onclick="settingModal(22)">戻る</a> </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col s4 m2 l2">
+        <div id="modalUserUserNotFound" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 id="modalUserUserNotFoundHead"></h6>
+                </div>
+                <a onclick="callThisUser()" style="background-color: #107FC9;" class="waves-effect waves-light btn">発信</a>
+                <a onclick="closeUserNotFound()" style="background-color: #EA6B75; margin-left: 18px" class="waves-effect waves-light btn">戻る</a>
+            </div>
+        </div>
+    </div> -->
+    <div class="col s4 m2 l4">
+        <div id="noInternet" class="modal">
+            <div class="modal-box">
+                <div class="col s4 m2 l2 btn-box">
+                    <h5 id="reConnectTextChange">接続確認中です。<br>しばらくお待ち下さい。</h5> </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4 m4 l6">
+        <div id="mymodal33" class="modal">
+            <div style="background-color:#B7DDF2; height: 100%; overflow: hidden; padding: 20px; " class="modal-box2">
+                <div class="col s4 m2 s6 ">
+                    <h6>ユーザー追加</h6>
+                    <h6>追加するユーザー名を入れて下さい</h6> </div>
+                <div class="row">
+                    <div class="col s12 l12 ">
+                        <form action=""> お名前:
+                            <input id="userNameToAdd" style="background-color: #fff;" type="text" name="firstname" placeholder="山田さん"> </form>
+                    </div>
+                    <div class="col s12 l12 ">
+                        <form action=""> 電話番号
+                            <input id="userNumberToAdd" style="background-color: #fff;" type="text" name="lastname" placeholder="０９０－９９９９－９９９９"> </form>
+                    </div>
+                    <div class="row">
+                        <div class="col s5"> <a onclick="closeModalForAddUser()" style="background-color: #EA6B75; padding:0; width:100px" class="waves-effect waves-light btn">戻る</a> </div>
+                        <div style="margin-left: 20px" class="col s5"> <a onclick="addUserToDbVerify()" style="background-color: #107FC9; padding:0 ; width:100px" class="waves-effect waves-light btn">完了</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="client11.js?v=39"></script>
+    <script>
+        function pageView(url) {
+            if (localStorage.getItem('myNumber')) {
+                let myContact = JSON.parse(localStorage.getItem('myNumber'))
+                // location.href = 'contact-load.html?type='+type+'&user_mobile_number='+myContact.number
+                url = url + myContact.number
+            }
+
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>

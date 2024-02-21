@@ -1,0 +1,109 @@
+.back-btn {
+    background: #fbbc0c;
+    border-radius: 10px;
+    height: 35px;
+    line-height: 36px;
+    width: 64px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.custom-middle {
+    background: #D7E4BD;
+    border-radius: 25px;
+    border: 3px green solid;
+    height: 90px;
+    padding: 15px;
+    text-align: center;
+    width: 90%;
+    color: black;
+    font-size: larger;
+}
+
+.right {
+    float: right;
+    text-align: right;
+}
+
+.clock {
+    color: #ffffff;
+    font-size: 50px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.date {
+    color: #ffffff;
+    font-size: 34px;
+    letter-spacing: 2px;
+    text-align: left;
+    margin-left: 7px;
+}
+
+.button-section .btn-large {
+    background-color: #85C9E8;
+}
+
+#free-call-alert-modal {
+    transform: translateY(-50%) !important;
+    top: 69% !important;
+    border-radius: 20px;
+    width: 285px !important;
+    border: 2px solid #000;
+}
+
+#free-call-alert-modal .modal-box {
+    border: 0px
+}
+
+.swal-section a {
+    height: 41px;
+    /* line-height: 60px; */
+    width: 49px;
+    font-size: 24px;
+    padding: 2px;
+    border-radius: 10px;
+    background: #00B050;
+    color: white;
+    text-align: center;
+}
+
+.swal-section span {
+    font-size: 24px;
+}
+
+.modal-overlay {
+    opacity: 0 !important;
+}
+
+.top-bar-btn {
+    width: 78%;
+    background: #ed9505;
+    margin-top: 10px;
+    height: 66px;
+    font-family: hkgyokk;
+}
+
+.top-bar-btn-sec {
+    width: 58%;
+    margin-top: 5px;
+    height: 46px;
+    font-size: 24px !important;
+}
+
+@media (max-width: 275px) and (min-width: 100px) {
+    #free-call-alert-modal{
+        width: 100% !important;
+    }
+}
+
+#free-call-alert-modal span {
+    font-size: 22px !important;
+}
+
+#pwa-install-modal {
+    bottom: 10% !important;
+    top: initial !important;
+    width: 380px !important;
+}

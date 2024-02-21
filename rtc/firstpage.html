@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>ジャコス無料通話</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+     <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="first_page_script.js"></script>
+
+</head>
+
+<style>
+    body {
+        background: #eee;
+
+    }
+
+    .modal-header h6 {
+
+        margin: 1.5rem 0 1.4rem 0;
+    }
+
+
+</style>
+
+<body>
+
+	<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper ">
+        <a id="logo-container" class="brand-logo">ジャコス無料通話</a>
+
+        <ul class="right">
+            <li><a onclick="goToLast()" class="waves-effect waves-light btn">戻る</a></li>
+        </ul>
+    </div>
+</nav>
+<div style="padding-top: 40px" class="row">
+	<div class="col s12 m6 l4"></div>
+        <div class="col s12 m6 l4">
+            <div class="card card-bg">
+                <div class="card-content white-text">
+                    <span class="card-title">あなたの電話番号</span>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s10 card-input" id="card-input">
+                        <input placeholder="０９０４４５９４４５９"  type="number" id="user_number_input">
+                       
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="col s4 m4 l4"></div>
+                   <div class="col s4 m4 l4">
+                        <div class="okbtn">
+                            <a  onclick="goToNext()" class="waves-effect waves-light btn">次へ</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div
+
+
+
+
+
+
+</body>
+
+</html>

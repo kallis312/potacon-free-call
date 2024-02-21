@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ジャコス無料通話</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 990px) and (min-width: 575px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 320px) and (min-width: 200px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+
+        .font-family-custom {
+            font-family: 'hkgyokk';
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto col-sm p-0 bg-potacon min-vh-100"
+             style="background-image: linear-gradient(to right, #897679, #ad9f9f,#897679);">
+
+            <div class="p-2 text-white mt-4">
+                <div class="jumbotron d-flex align-items-center min-vh-100">
+                    <div class="container text-center">
+                        <div id="pwa-install-modal" class="text-center">
+                            <a id="install-pwa-app" class="btn btn-large " data-id="16th" style="
+                            padding: 2px;
+                            border-radius: 10px;
+                            background: #00B050;
+                            color: white;
+                            text-align: center;
+                            font-size: 16px;
+                            font-family: 'hkgyokk'">
+                              アイコン表示【アンドロイド用】 
+                            </a>
+
+<a href="https://webtel.dev.jacos.jp/rtc/" class="btn btn-large mt-5 "  style="
+                            padding: 2px;
+                            border-radius: 10px;
+                            background: #00B050;
+                            color: white;
+                            text-align: center;
+                            font-size: 16px;
+                            font-family: 'hkgyokk'">
+                             ログインページ【アイフォン用】 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+        <form class="login-form" style="padding: 0">
+            <div class="row col s12" style="margin: 0">
+                <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                <audio id="music" src="./../baby.mp3"></audio>
+                <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+            </div>
+            <!--  <div class="row margin_bottom">
+                <div class="input-field col s11">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="callToUsernameInput" type="number">
+                    <label for="username" class="center-align">電話番号</label>
+                </div>
+            </div>-->
+            <div class="row row-padding">
+                <div class="login-button center-align">
+                    <div class="col s4"></div>
+                </div>
+            </div>
+
+            <!-- display: none; -->
+            <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+                     style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-top: 25px">
+                            <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="statusText"></div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="callDuration"></div>
+                        <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                    </div>
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+                            <a role="button" id=""
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                                OFF</a>
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+                            <a role="button" id="hangUpBtn"
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+            </div>
+
+
+        </form>
+    </div>
+    <div>
+        <select style="display: none;" id="audioOutput"></select>
+    </div>
+</main>
+<!--<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>-->
+<script>
+    $(function () {
+        //===========check pwa install in our divice================
+        // variable store event
+        window.deferredPrompt = {};
+        // get button with id
+        const install_button  = document.querySelector('#install-pwa-app');
+
+        // if the app can be installed emit beforeinstallprompt
+        window.addEventListener('beforeinstallprompt', e => {
+            // this event does not fire if the application is already installed
+            // then your button still hidden ;)
+
+            // show button with display:block;
+            //install_button.style.display = 'block';
+            $('#pwa-install-modal').modal();
+            $('#pwa-install-modal').modal('open');
+            // prevent default event
+            e.preventDefault();
+
+            // store install avaliable event
+            window.deferredPrompt = e;
+
+            // wait for click install button by user
+            install_button.addEventListener('click', e => {
+                window.deferredPrompt.prompt();
+                window.deferredPrompt.userChoice.then(choiceResult => {
+                    if (choiceResult.outcome === 'accepted') {
+                        // user accept the prompt
+                        console.log(choiceResult.outcome, 'choiceResult.outcome')
+                        // lets hidden button
+                        $('#pwa-install-modal').modal('close');
+                        //install_button.style.display = 'none';
+                    } else {
+                        console.log('User dismissed the prompt');
+                    }
+                    window.deferredPrompt = null;
+                });
+            });
+        });
+
+        // if are standalone android OR safari
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            // hidden the button
+            console.log('display-mode: standalone')
+            $('#pwa-install-modal').modal('close');
+            //install_button.style.display = 'none';
+        }
+
+        // do action when finished install
+        window.addEventListener('appinstalled', e => {
+            console.log("success app install!");
+            window.location.href = '../index.html'
+        });
+        // ============install pwa app end=================
+    });
+</script>
+</body>
+</html>

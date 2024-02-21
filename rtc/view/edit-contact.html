@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ジャコス無料通話</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css?v=9">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 990px) and (min-width: 575px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 320px) and (min-width: 200px) {
+            .header-img {
+                width: 100% !important;
+            }
+        }
+
+        @font-face {
+            font-family: 'hkgyokk';
+            src: url('../fonts/hkgyokk.ttf') format('truetype')
+        }
+
+        .font-family-custom {
+            font-family: 'hkgyokk';
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-lg-4 mx-auto col-sm p-0 bg-potacon min-vh-100"
+             style="background-image: linear-gradient(to right, #897679, #ad9f9f,#897679);">
+            <div class="header"
+                 style="position: relative;background: #918283;display: flex;padding: 10px;">
+                <img class="header-img" src="./rsc/contacts_title_img.png" alt="" height="65">
+                <img onclick="javascript:history.back()" src="./rsc/go_back_btn.png" alt=""
+                     style="position: absolute;right: 3px;top : 4px;cursor: pointer" height="50">
+            </div>
+
+            <div class="p-2 mt-4">
+                <form id="shareForm">
+                    <div class="input-group mb-3">
+                        <input placeholder="名前" required id="name" type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input placeholder="電話番号" required id="phone" type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input id="mail" placeholder="メールアドレス" type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea placeholder="メモ" id="memo" type="text" class="form-control"></textarea>
+                    </div>
+                    <div class="border border-2 p-2 border-danger rounded-3" style="background-color: #FFEFF5">
+                        <div class="row mb-3">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-danger">右のボタンを押す</div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <button id="shareSubmit" type="submit"
+                                        class="btn btn-success fw-bold rounded-pill btn-lg float-end text-success bg-dark">
+                                    練習へ
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="text-center mb-3">習うより慣れろ!</h3>
+                        <h5 class="text-center">練習は登録されませんので<br> 思いきって使いましょう。</h5>
+                    </div>
+                    <div class="h3 text-center text-warning" id="waiting" style="display: none">お待ちください...</div>
+                </form>
+                <div id="free-call-alert-modal" class="alert bg-white border border-2 border-dark fw-bolder h4 mt-4 p-4 rounded-pill text-center" role="alert">
+                    <span id="contact_change_msg"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col s12 m4 l4  z-depth-1 card-panel" style="margin: 0;box-shadow: none;position: relative;">
+        <form class="login-form" style="padding: 0">
+            <div class="row col s12" style="margin: 0">
+                <audio style="display:none" id="remoteAudio" class="audio_play" controls autoplay></audio>
+                <audio style="display:none" id="remoteAudio2" class="audio_play" controls autoplay></audio>
+                <audio id="music" src="./../baby.mp3"></audio>
+                <div id="connectedText" style="display:none ;color: green; font-size: 18px" align="center"></div>
+            </div>
+            <!--  <div class="row margin_bottom">
+                <div class="input-field col s11">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    <input id="callToUsernameInput" type="number">
+                    <label for="username" class="center-align">電話番号</label>
+                </div>
+            </div>-->
+            <div class="row row-padding">
+                <div class="login-button center-align">
+                    <div class="col s4"></div>
+                </div>
+            </div>
+
+            <!-- display: none; -->
+            <div id="divForAllValues_" class="row row-padding" style="margin: 0">
+                <div id="statusDiv" class="col s4 l4 content-wrap-outbox"
+                     style="display: none;  position: fixed; top:0; left: 0 !important; z-index: 1010; width: 100% !important; padding: 0;height: 100vh;background: #a78e91">
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;height: 65%;margin: 0">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-top: 25px">
+                            <img src="rsc/call_pic.jpg" alt="" style="height: 100px">
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="statusText"></div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" id="callDuration"></div>
+                        <!--                            <p style="color: #ffffff;padding: 0px 0px 10px 10px" id="statusText"></p>-->
+
+                    </div>
+                    <div class="content-wrap row"
+                         style=" text-align: center; padding: 0px 0px 0px 0px; font-size: 32px; border-radius: 8px;">
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+                            <a role="button" id=""
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 38px;border: 1px solid #A78E91;font-size: 21px; line-height: 40px;width: 50%;border-radius: 22px;background: #b19b9e">スピーカー
+                                OFF</a>
+                        </div>
+                        <div class="col col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+                            <a role="button" id="hangUpBtn"
+                               class="text-white fw-bold text-decoration-none shadow waves-effect waves-light btn-large"
+                               style="height: 45px;font-size: 26px; line-height: 47px;width: 92%;border-radius: 5px;background: #F6403B;">終了</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="divForAllValues" class="row row-padding" style="margin: 0;visibility: hidden">
+            </div>
+
+
+        </form>
+    </div>
+    <div>
+        <select style="display: none;" id="audioOutput"></select>
+    </div>
+
+</main>
+
+<script src="../client11.js?v=797979797979797922&v1=00000000000022"></script>
+<script>
+    $(function () {
+        $('#free-call-alert-modal').hide();
+        let contact_id = urlParam('contact_id');
+        getContact(contact_id)
+        $("#shareForm").submit(function (e) {
+            // $('#shareSubmit').html('お待ちください...');
+            // $('#waiting').show();
+            $('#shareSubmit').prop('disabled', true);
+            e.preventDefault();
+            let name     = document.getElementById('name').value;
+            let phone    = document.getElementById('phone').value;
+            let mail     = document.getElementById('mail').value;
+            let memo     = document.getElementById('memo').value;
+            $.ajax({
+                type       : "POST",
+                url        : `${apiUrl}/update-contact/${contact_id}`,
+                dataType   : 'text',
+                contentType: "application/x-www-form-urlencoded",
+                data       : {name, phone, mail, memo},
+                success    : function (res) {
+                    let res_data = JSON.parse(res)
+                    if (res_data.status == 'success') {
+                        successAlertModal('更新を編集されました。')
+                    }
+                },
+                error      : function (error) {
+                    console.log(error, 'error')
+                }
+            });
+        });
+    });
+    const getContact = (contact_id) => {
+        $.ajax({
+            type       : "GET",
+            url        : `${apiUrl}/get-contact/${contact_id}`,
+            dataType   : 'text',
+            contentType: "application/x-www-form-urlencoded",
+            success    : function (res) {
+                let res_data = JSON.parse(res)
+                $('#name').val(res_data.data.contact_name)
+                $('#phone').val(res_data.data.contact_telnum)
+                $('#mail').val(res_data.data.contact_mail)
+                $('#memo').val(res_data.data.contact_memo)
+            },
+            error      : function (error) {
+                console.log(error, 'error')
+            }
+        });
+    }
+    const successAlertModal = (msg) => {
+        $('#free-call-alert-modal').show();
+        document.getElementById("contact_change_msg").innerHTML = `${msg}`;
+        setTimeout(() => {
+            $('#free-call-alert-modal').hide();
+            location.reload();
+        }, 3000)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "ポタコン",
+  "short_name": "ポタコン",
+  "display": "standalone",
+  "start_url": "/rtc/index.html",
+  "scope": "/rtc/*",
+  "theme_color": "#673ab6",
+  "background_color": "#111111",
+  "icons": [
+    {
+      "src": "view/rsc/pwa-icon/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },{
+      "src": "view/rsc/pwa-icon/128.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },{
+      "src": "view/rsc/pwa-icon/142.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },{
+      "src": "view/rsc/pwa-icon/152.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },{
+      "src": "view/rsc/pwa-icon/256.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },{
+      "src": "view/rsc/pwa-icon/loading.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
