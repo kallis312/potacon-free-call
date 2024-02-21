@@ -46,8 +46,8 @@ var bodyParser = require('body-parser');
 
 // Yes, TLS is required
 const serverConfig = {
-    key: fs.readFileSync('/etc/letsencrypt/live/webtel.dev.jacos.jp/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/webtel.dev.jacos.jp/fullchain.pem'),
+    key: fs.readFileSync('./localhost.key'),
+    cert: fs.readFileSync('./localhost.crt'),
 };
 
 var serviceAccount = require("/var/www/html/rtc/firebase.json");
@@ -112,7 +112,7 @@ const httpsServerNext = https.createServer(serverConfig, app);
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Rasel#22386779',
+    password: 'Jacos@Cloud',
     database: 'free_call',
     timezone: 'utc'
 
@@ -274,9 +274,9 @@ wss.on('connection', function (connection) {
                 break;
 
             case "okBoss":
-              //  clearTimeout(userIsBusy);
+                //  clearTimeout(userIsBusy);
                 logger.info("ringing ok sendTo: " + data.name);
-                historyStore(1, data.auth_id, data.name,'', '');
+                historyStore(1, data.auth_id, data.name, '', '');
                 var connRing = users[data.name];
                 if (connRing != null) {
 
@@ -440,7 +440,7 @@ wss.on('connection', function (connection) {
             case "userStatus":
 
                 logger.info("userStatus sendTo: " + data.name);
-                historyStore(4, data.auth_id, data.name,'', '');
+                historyStore(4, data.auth_id, data.name, '', '');
                 var conn = users[data.name];
                 if (conn != null) {
 
@@ -519,7 +519,7 @@ wss.on('connection', function (connection) {
 
 
                 try {
-                    if(data.name=="not given"){
+                    if (data.name == "not given") {
                         break;
                     }
 
@@ -565,7 +565,7 @@ wss.on('connection', function (connection) {
 
                 break;
             case "share":
-              //  clearTimeout(userIsBusy);
+                //  clearTimeout(userIsBusy);
                 logger.info("share ok to: " + data.name);
 
                 connection.name = data.name;
@@ -741,14 +741,14 @@ app.use(cors());
 
 const callHistoryCountIncrement = (contact_id) => {
     logger.info(`contacts id: ${contact_id} Call history count +1 updating...`);
-    let sql= "UPDATE contacts SET call_count = call_count + 1 WHERE id = ?";
+    let sql = "UPDATE contacts SET call_count = call_count + 1 WHERE id = ?";
     db.query(sql, [contact_id], function (error, results) {
         if (error) throw error;
         logger.info("contacts Call history count +1 updated");
     });
 }
 
-function historyStore(type, auth_id, friend_number, call_duration, call_for_name="") {
+function historyStore(type, auth_id, friend_number, call_duration, call_for_name = "") {
     logger.info("history adding");
 
     // store call history in database
@@ -759,7 +759,7 @@ function historyStore(type, auth_id, friend_number, call_duration, call_for_name
             if (error) throw error;
             if (results.length > 0) {
                 checkWithStoreHistoryData(type, auth_id, call_duration, results[0].idusers);
-            }else {
+            } else {
                 let post = {
                     name: call_for_name,
                     mobile_number: friend_number,
@@ -778,9 +778,9 @@ function historyStore(type, auth_id, friend_number, call_duration, call_for_name
     }
 }
 
-function checkWithStoreHistoryData(type, auth_id, call_duration, idusers){
+function checkWithStoreHistoryData(type, auth_id, call_duration, idusers) {
     var datetime = new Date();
-    var dateTime     = datetime.getFullYear() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getDate() + " " + datetime.getHours() + ":" + datetime.getMinutes() + ":" + datetime.getSeconds();
+    var dateTime = datetime.getFullYear() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getDate() + " " + datetime.getHours() + ":" + datetime.getMinutes() + ":" + datetime.getSeconds();
     if (type == 4) {
         // history update
         let dateTimePlus30Seconds = new Date(datetime.getTime() - 30 * 1000);
@@ -790,7 +790,7 @@ function checkWithStoreHistoryData(type, auth_id, call_duration, idusers){
         db.query(update_sql, [type, idusers, dateTimePlus30Seconds], function (error, results) {
             if (error) throw error;
         });
-    }else if (type == 5) {
+    } else if (type == 5) {
         let update_sql = 'UPDATE histories SET duration = ? WHERE user_id = ? ORDER BY start_time DESC LIMIT 1';
         db.query(update_sql, [call_duration, idusers], function (error, results) {
             if (error) throw error;
@@ -837,9 +837,9 @@ app.get('/delete-call-history/:id', function (req, res) {
     logger.info("call-history request owner: " + req.params.id);
 
     try {
-       //delete single call history
+        //delete single call history
         let sql = 'DELETE FROM histories WHERE histories.id = ? ';
-       db.query(sql, req.params.id, function (error, results) {
+        db.query(sql, req.params.id, function (error, results) {
             if (error) throw error;
             res.send({
                 message: "OK",
@@ -900,12 +900,12 @@ app.post('/contact-add/:idusers', function (req, res) {
             });
         })
     }
-        catch (error) {
-            logger.info("error: " + error);
-            res.send({
-                message: "NG"
-            });
-        }
+    catch (error) {
+        logger.info("error: " + error);
+        res.send({
+            message: "NG"
+        });
+    }
 });
 
 app.post('/update-contact/:id', function (req, res) {
@@ -921,7 +921,7 @@ app.post('/update-contact/:id', function (req, res) {
             res.send({
                 message: "Contact updated successfully",
                 data: result,
-                status:"success"
+                status: "success"
             });
         });
     } catch (error) {
@@ -960,7 +960,7 @@ app.get('/get_all_users/:contacts_owner/:type', function (req, res) {
     logger.info("get_all_users request owner: " + req.params.contacts_owner);
     logger.info("get_all_users request type: " + req.params.type);
 
-    if (req.params.type==3){
+    if (req.params.type == 3) {
         let search_text = req.query.search_text;
         console.log(search_text, 'search_text')
 
@@ -969,16 +969,16 @@ app.get('/get_all_users/:contacts_owner/:type', function (req, res) {
 
         // let sql = 'select `contact_name` as `name`, `contact_mail` as `mail`, REPLACE(contact_telnum, "-", "") as mobile_number from `contacts` where `contact_owner` = ? and `contact_name` = ?';
         //let sql = 'SELECT * FROM free_call.users UNION SELECT id As idusers, contact_name As name, REPLACE(contact_telnum,"-","") As mobile_number,contact_mail As mail FROM free_call.contacts where contact_owner=?';
-        db.query(sql, req.params.contacts_owner,function (error, results) {
+        db.query(sql, req.params.contacts_owner, function (error, results) {
             if (error) throw error;
             potaconFreeCallUsers = results;
             res.send(results);
 
         });
-    }else {
+    } else {
         let sql = 'select id, `contact_name` as `name`, `contact_mail` as `mail`, REPLACE(contact_telnum, "-", "") as mobile_number from `contacts` where `contact_owner` = ? AND `contact_group_flag` = ? ORDER BY call_count DESC, updated_time DESC';
         //let sql = 'SELECT * FROM free_call.users UNION SELECT id As idusers, contact_name As name, REPLACE(contact_telnum,"-","") As mobile_number,contact_mail As mail FROM free_call.contacts where contact_owner=?';
-        db.query(sql, [req.params.contacts_owner, req.params.type],function (error, results) {
+        db.query(sql, [req.params.contacts_owner, req.params.type], function (error, results) {
             if (error) throw error;
             potaconFreeCallUsers = results;
             res.send(results);
@@ -1054,19 +1054,19 @@ app.post('/addUser', function (req, res) {
 
 });
 
-const smsApiUrl   = 'http://66.45.237.70'
+const smsApiUrl = 'http://66.45.237.70'
 const smsUserName = 'dhakajacos'
 const smsPassword = 'T4U82J73'
 
 app.post('/sms-share', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    let name       = req.body["name"];
-    let phone      = req.body["phone"];
-    let code     = req.body["code"];
+    let name = req.body["name"];
+    let phone = req.body["phone"];
+    let code = req.body["code"];
 
     let site_url = 'https://webtel.dev.jacos.jp';
-    let message1  = `クリックしてポタコンアイコン表示してください： ${site_url}/rtc`
+    let message1 = `クリックしてポタコンアイコン表示してください： ${site_url}/rtc`
     let message2 = ` これがあなたの暗証番号です： ${code}`
     //let message = `${message1}%0a${message2}`
     let message = `${message1} ${message2}`
@@ -1092,18 +1092,18 @@ app.post('/sms-share', function (req, res) {
         }
     };
     res.send({
-        result : options,
+        result: options,
         message: "Sms Send successfully",
-        status : 'success'
+        status: 'success'
     })
-   /* request(options, function (error, response) {
-        if (error) throw new Error(error);
-        res.send({
-            result : response.body,
-            message: "Sms Send successfully",
-            status : 'success'
-        })
-    });*/
+    /* request(options, function (error, response) {
+         if (error) throw new Error(error);
+         res.send({
+             result : response.body,
+             message: "Sms Send successfully",
+             status : 'success'
+         })
+     });*/
 
 
     /*var request = require('request');
@@ -1221,13 +1221,13 @@ app.get('/get-contact/:id', function (req, res) {
             if (error) throw error;
             res.send({
                 data: results[0],
-                status:"success",
+                status: "success",
             });
         });
     } catch (error) {
         logger.info("error: " + error);
         res.send({
-            error:error,
+            error: error,
             message: "NG"
         });
     }
@@ -1245,7 +1245,7 @@ app.delete('/delete_contact/:id', function (req, res) {
             if (error) throw error;
             res.send({
                 message: "Contacts deleted successfully",
-                status:"success",
+                status: "success",
             });
         });
     } catch (error) {
@@ -1305,7 +1305,7 @@ app.post('/shareUser', function (req, res) {
                     res.send({
                         message: "updated",
                         target_user_id: target_user_id,
-                        status:"success",
+                        status: "success",
                     });
                 } else {
                     let sql = 'INSERT INTO shares SET ?';
@@ -1314,7 +1314,7 @@ app.post('/shareUser', function (req, res) {
                         res.send({
                             message: "inserted",
                             target_user_id: target_user_id,
-                            status:"success",
+                            status: "success",
                         });
                     });
                 }
@@ -1333,7 +1333,7 @@ app.get('/get-share/:id', function (req, res) {
             if (results.length > 0) {
                 res.send({
                     data: results[0],
-                    status:"success",
+                    status: "success",
                 });
             } else {
                 res.send({
@@ -1345,7 +1345,7 @@ app.get('/get-share/:id', function (req, res) {
     } catch (error) {
         logger.info("error: " + error);
         res.send({
-            error:error,
+            error: error,
             message: "NG"
         });
     }
