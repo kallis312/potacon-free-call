@@ -43,7 +43,7 @@ var goingToCall;
 var userMee;
 var hangUpTrack;
 
-var apiUrl ="https://webtel.dev.jacos.jp:3000";
+var apiUrl = "https://webtel.jacos-cloud.com:3000";
 // var apiUrl ="http://192.168.0.109:3000";
 // var apiUrl ="http://192.168.150.174:3000";
 
@@ -71,11 +71,11 @@ var configuration = {
     "iceServers": [{
         'urls': 'stun:stun.l.google.com:19302'
     },
-        {
-            urls: "turn:webtel.dev.jacos.jp",
-            username: "username1",
-            credential: "password1"
-        }
+    {
+        urls: "turn:webtel.dev.jacos.jp",
+        username: "username1",
+        credential: "password1"
+    }
 
     ]
 };
@@ -87,10 +87,10 @@ if ('serviceWorker' in navigator) {
     let swPath = '../sw.js';
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split('?')[0];
-    console.log('baseUrl',baseUrl);
+    console.log('baseUrl', baseUrl);
     if (baseUrl === 'https://webtel.dev.jacos.jp/rtc/index.html') {
-      swPath = 'sw.js'; // Update the service worker path for 'index.html'
-    }else{
+        swPath = 'sw.js'; // Update the service worker path for 'index.html'
+    } else {
         swPath = '../sw.js';
     }
     navigator.serviceWorker
@@ -104,8 +104,8 @@ if ('serviceWorker' in navigator) {
         .catch(function (error) {
             console.log('Service worker registration failed, error:', error);
         });
-    caches.keys().then(function(cacheNames) {
-        cacheNames.forEach(function(cacheName) {
+    caches.keys().then(function (cacheNames) {
+        cacheNames.forEach(function (cacheName) {
             console.log(cacheName)
             caches.delete(cacheName);
             location.reload(true);
@@ -115,9 +115,9 @@ if ('serviceWorker' in navigator) {
 
 // oni
 //
-if (!localStorage.getItem("my_number_clear")){
+if (!localStorage.getItem("my_number_clear")) {
     localStorage.clear()
-    localStorage.setItem("my_number_clear",JSON.stringify(1))
+    localStorage.setItem("my_number_clear", JSON.stringify(1))
     location.href = 'index.html';
     if (window.location.href.indexOf("view") > -1) {
         location.href = './../index.html';
@@ -251,7 +251,7 @@ function reloadSocketConnection() {
                     var nameOfCaller = data.requesterName;
                     goingToCall = data.requesterMobile;
                     userMee = data.name;
-                    displayNotification(goingToCall+ ' 呼び出し中','ポタコン')
+                    displayNotification(goingToCall + ' 呼び出し中', 'ポタコン')
 
                     showAlert(nameOfCaller, data.requesterMobile, data.name);
                     send({
@@ -352,7 +352,7 @@ function reloadSocketConnection() {
                     setTimeout(function () {
                         alert("申し訳ございません。" + "\n" + "後にしてください。" + "\n \n" + userName + " より");
                         location.reload(true);;
-                    },100)
+                    }, 100)
                     break;
                 case "ringing":
                     console.log('ringing')
@@ -510,7 +510,7 @@ function send(message) {
         message.name = connectedUser;
     }
 
-    if (selected_contact_id){
+    if (selected_contact_id) {
         message.contact_id = selected_contact_id;
     }
     message.senderNumber = jacosUserIdForSend;
@@ -531,16 +531,16 @@ function retryCall() {
 
 setInterval(function () {
 
-    if (!userInCall){
+    if (!userInCall) {
         reloadSocketConnection();
     }
-},30000)
+}, 30000)
 
 setInterval(function () {
     if (typeof selected_contact_number == 'undefined' && !userInCall && !reload_status) {
         location.reload(true);
     }
-},40000)
+}, 40000)
 
 function handleLogin(success) {
 
@@ -629,7 +629,7 @@ function setTime() {
     let minutesLabel = pad(parseInt(totalSeconds / 60));
     let houreLabel = pad(parseInt(minutesLabel / 60));
     var callDuration = document.getElementById("callDuration");
-    callDuration.innerHTML = houreLabel +' : '+minutesLabel+' : '+secondsLabel
+    callDuration.innerHTML = houreLabel + ' : ' + minutesLabel + ' : ' + secondsLabel
 }
 
 function lastCallDuration() {
@@ -637,7 +637,7 @@ function lastCallDuration() {
     let minutesLabel = pad(parseInt(totalSeconds / 60));
     let houreLabel = pad(parseInt(minutesLabel / 60));
     var callDuration = document.getElementById("callDuration");
-    alert( houreLabel +' : '+minutesLabel+' : '+secondsLabel)
+    alert(houreLabel + ' : ' + minutesLabel + ' : ' + secondsLabel)
 }
 
 function pad(val) {
@@ -672,7 +672,7 @@ function callUser(numberToCall) {
 }
 
 
-function displayNotification(body = 'WEE' ,title = 'ER' ) {
+function displayNotification(body = 'WEE', title = 'ER') {
     Notification.requestPermission().then(function (permission) {
         // If the user accepts, let's create a notification
         let icon = '';
@@ -682,7 +682,7 @@ function displayNotification(body = 'WEE' ,title = 'ER' ) {
             icon = 'view/rsc/pwa-icon/512.png';
         }
         if (Notification.permission == 'granted') {
-            navigator.serviceWorker.getRegistration().then(function(reg) {
+            navigator.serviceWorker.getRegistration().then(function (reg) {
                 var options = {
                     body: body,
                     icon: icon,
@@ -692,8 +692,8 @@ function displayNotification(body = 'WEE' ,title = 'ER' ) {
                         primaryKey: 1
                     },
                     actions: [
-                        {action: 'explore', title: 'Explore'},
-                        {action: 'close', title: '戻る'},
+                        { action: 'explore', title: 'Explore' },
+                        { action: 'close', title: '戻る' },
                     ]
                 };
                 reg.showNotification(title, options);
@@ -717,7 +717,7 @@ async function getContacts() {
                     .contacts
                     .select(
                         contactProperties,
-                        {multiple: true}
+                        { multiple: true }
                     );
 
                 alert("Your first contact: " + contacts[0].name + " " + contacts[0].tel + " ");
@@ -772,7 +772,7 @@ function requestCall() {
                         name: callToUsername,
                         requesterMobile: myMobileNumber,
                         requesterName: nameOfRequester,
-                        call_for_name:callForName,
+                        call_for_name: callForName,
                     });
                     userInACall = 9;
 
@@ -871,23 +871,23 @@ function handleOffer(offer, name) {
 
             stream.getTracks().forEach(track => yourConn.addTrack(track, stream));
         }).then(function () {
-        //create an answer to an offer
-        yourConn.createAnswer().then(function (answer) {
-            yourConn.setLocalDescription(answer).then(function () {
-                send({
-                    type: "answer",
-                    answer: answer
+            //create an answer to an offer
+            yourConn.createAnswer().then(function (answer) {
+                yourConn.setLocalDescription(answer).then(function () {
+                    send({
+                        type: "answer",
+                        answer: answer
+                    });
+
                 });
+                // console.log("ice ans 2 :"+yourConn.signalingState);
 
+
+            }, function (error) {
+                alert("Error when creating an answer:  " + error);
             });
-            // console.log("ice ans 2 :"+yourConn.signalingState);
 
-
-        }, function (error) {
-            alert("Error when creating an answer:  " + error);
         });
-
-    });
 
 
 }
@@ -1651,7 +1651,7 @@ function addSingleUserDB(userName, userNumber) {
         },
         success: function (res) {
             let res_data = JSON.parse(res)
-            localStorage.setItem("auth_id",res_data.auth_id);
+            localStorage.setItem("auth_id", res_data.auth_id);
             document.getElementById("userNameToAdd").value = "";
 
             document.getElementById("userNumberToAdd").value = "";
@@ -1809,9 +1809,9 @@ function showStatusText(text) {
 function userShare() {
     $('#waiting').show();
     $('#shareSubmit').prop('disabled', true);
-    let name     = document.getElementById('name').value;
-    let phone    = document.getElementById('phone').value;
-    let code    = document.getElementById('4digit').value;
+    let name = document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    let code = document.getElementById('4digit').value;
     let auth_id = localStorage.getItem("auth_id");
 
     $.ajax({
