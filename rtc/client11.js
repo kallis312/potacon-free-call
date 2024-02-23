@@ -88,7 +88,7 @@ if ('serviceWorker' in navigator) {
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split('?')[0];
     console.log('baseUrl', baseUrl);
-    if (baseUrl === 'https://webtel.dev.jacos.jp/rtc/index.html') {
+    if (baseUrl === 'https://webtel.jacos-cloud.com/rtc/index.html') {
         swPath = 'sw.js'; // Update the service worker path for 'index.html'
     } else {
         swPath = '../sw.js';
