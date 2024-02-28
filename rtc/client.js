@@ -93,9 +93,7 @@ httpsServer.listen(HTTPS_PORT, '0.0.0.0');
 // ----------------------------------------------------------------------------------------
 
 // Create a server for handling websocket calls
-const wss = new WebSocketServer({
-    server: httpsServer
-});
+
 
 //all connected to the server users
 var users = {};
@@ -103,11 +101,17 @@ var onlineUsers = [];
 
 
 //send users to client
+app.use(express.static(__dirname));
 
+app.get('/*', function (req, res) {
+    res.sendFile('index.html');
+});
 
 const httpsServerNext = https.createServer(serverConfig, app);
 
-
+const wss = new WebSocketServer({
+    server: httpsServerNext
+});
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -126,8 +130,8 @@ db.connect((err) => {
     logger.info('mysql connected....');
 });
 
-httpsServerNext.listen(3000, () => {
-    logger.info('server started at port 3000');
+httpsServerNext.listen(443, () => {
+    logger.info('server started at port 443');
 });
 
 //when a user connects to our sever

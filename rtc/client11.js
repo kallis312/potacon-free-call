@@ -43,9 +43,9 @@ var goingToCall;
 var userMee;
 var hangUpTrack;
 
-var apiUrl = "https://webtel.jacos-cloud.com:3000";
-// var apiUrl ="http://192.168.0.109:3000";
-// var apiUrl ="http://192.168.150.174:3000";
+var apiUrl = "https://webtel.jacos-cloud.com";
+// var apiUrl ="http://192.168.0.109";
+// var apiUrl ="http://192.168.150.174";
 
 var selected_contact_name;
 var selected_contact_number;
@@ -170,7 +170,7 @@ function hasUserMedia() {
 reloadSocketConnection();
 
 function reloadSocketConnection() {
-    conn = new WebSocket('wss://webtel.dev.jacos.jp:9090');
+    conn = new WebSocket('wss://webtel.jacos-cloud.com');
 
     conn.onopen = function () {
 
@@ -1282,7 +1282,7 @@ function logInUser() {
 
 
 function getOnlineUsers() {
-    $.get('https://webtel.dev.jacos.jp:9090/data', {}, function (data) {
+    $.get('https://webtel.dev.jacos.jp/data', {}, function (data) {
         console.log("checking:   " + data);
         var a = data;
         a = a.replace(/'/g, '"');
@@ -1338,7 +1338,7 @@ function directMakeCall(number) {
             callingNumber = number;
 
             // requestCall()
-            // $.get('https://webtel.dev.jacos.jp:9090/data', {}, function(data) {
+            // $.get('https://webtel.dev.jacos.jp/data', {}, function(data) {
             //     console.log("checking:   " + data);
             //     var a = data;
             //     a = a.replace(/'/g, '"');
@@ -1400,7 +1400,7 @@ function openMOdalMakeCall(number) {
 
 
             callingNumber = number;
-            // $.get('https://webtel.dev.jacos.jp:9090/data', {}, function(data) {
+            // $.get('https://webtel.dev.jacos.jp/data', {}, function(data) {
             //     console.log("checking:   " + data);
             //     var a = data;
             //     a = a.replace(/'/g, '"');
@@ -1577,7 +1577,7 @@ document.addEventListener("visibilitychange", function () {
         var user = urlParam('user_mobile_number');
 
 
-        $.get('https://webtel.dev.jacos.jp:9090/data', {}, function (data) {
+        $.get('https://webtel.dev.jacos.jp/data', {}, function (data) {
 
             var a = data;
             a = a.replace(/'/g, '"');

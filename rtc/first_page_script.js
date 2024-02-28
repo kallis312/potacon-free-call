@@ -1,7 +1,7 @@
 //test data strat from here ..............................
 var potaconFreeCallUsers = [];
 
-$.get('https://webtel.dev.jacos.jp:3000/get_all_users/01', {}, function(data) {
+$.get('https://webtel.dev.jacos.jp/get_all_users/01', {}, function (data) {
 
 
     potaconFreeCallUsers = data;
@@ -23,7 +23,7 @@ function goToLast() {
     // Firefox 1.0+
     var isFirefox = typeof InstallTrigger !== 'undefined';
     // Safari 3.0+ "[object HTMLElementConstructor]"
-    var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) {
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
         return p.toString() === "[object SafariRemoteNotification]";
     })(!window['safari'] || safari.pushNotification);
     // Internet Explorer 6-11
@@ -50,7 +50,7 @@ function goToNext() {
         alert("give you mobile number");
     } else {
 
-        var result = potaconFreeCallUsers.filter(function(obj) { return obj.mobile_number == number; });
+        var result = potaconFreeCallUsers.filter(function (obj) { return obj.mobile_number == number; });
         if (result.length > 0) {
             localStorage.setItem("jacosUserId", result[0].mobile_number);
 
@@ -70,7 +70,7 @@ function goToNext() {
 function goToNextPage() {
     var isLoogedIn = localStorage.getItem("jacosUserId");
 
-    var result = potaconFreeCallUsers.filter(function(obj) { return obj.mobile_number == isLoogedIn; });
+    var result = potaconFreeCallUsers.filter(function (obj) { return obj.mobile_number == isLoogedIn; });
     if (result.length > 0) {
         localStorage.setItem("jacosUserId", result[0].mobile_number);
 
